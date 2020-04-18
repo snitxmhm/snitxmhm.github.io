@@ -278,14 +278,17 @@ table tr:nth-child(2n), thead {
     padding: 1px 1px;
     font-size: 0.92rem;
     color: #e96900;
+    /*color: #ffb86c	;*/
     background-color: #f8f8f8;
     border-radius: 2px;
 }
 
 .gitment-markdown pre code {
     padding: 0;
-    color: #e8eaf6;
-    background-color: #272822;
+    /*color: #e8eaf6;*/
+    color: #f8f8f2;
+    /*background-color: #272822;*/
+    background-color: #44475a;
 }
 
 .gitment-markdown pre[class*="language-"] {
