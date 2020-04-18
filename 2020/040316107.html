@@ -913,8 +913,9 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在本机家目录执行ssh-copy-id -i ~/.ssh/id_rsa git@my_server_ip自动修复权限问题
-
+                            创建git的家目录 mkdir /home/git将家目录拥有者改为git
+chown -R git:git /home/git
+在本机家目录执行ssh-copy-id -i ~/.ssh/id_rsa git@my_server_ip自动
                         
                     </div>
                     <div class="publish-info">
@@ -1148,7 +1149,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.1k</span>&nbsp;字
+                class="white-color">7.2k</span>&nbsp;字
             
             
             

@@ -487,7 +487,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    24
+                    49
                 </div>
                 
 
@@ -510,7 +510,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在本机家目录执行<code>ssh-copy-id -i ~/.ssh/id_rsa git@my_server_ip</code><br>自动修复权限问题</p>
+                <p>创建git的家目录 <code>mkdir /home/git</code><br>将家目录拥有者改为<code>git</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">chown</span> -R git:git /home/git</code></pre>
+<p>在本机家目录执行<code>ssh-copy-id -i ~/.ssh/id_rsa git@my_server_ip</code><br>自动修复权限问题</p>
 
             </div>
             <hr/>
@@ -1169,7 +1171,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.1k</span>&nbsp;字
+                class="white-color">7.2k</span>&nbsp;字
             
             
             

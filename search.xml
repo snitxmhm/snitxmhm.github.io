@@ -21,7 +21,7 @@
       <link href="/2020/033054874.html"/>
       <url>/2020/033054874.html</url>
       
-        <content type="html"><![CDATA[<p>在本机家目录执行<code>ssh-copy-id -i ~/.ssh/id_rsa git@my_server_ip</code><br>自动修复权限问题</p>]]></content>
+        <content type="html"><![CDATA[<p>创建git的家目录 <code>mkdir /home/git</code><br>将家目录拥有者改为<code>git</code></p><pre class=" language-bash"><code class="language-bash"><span class="token function">chown</span> -R git:git /home/git</code></pre><p>在本机家目录执行<code>ssh-copy-id -i ~/.ssh/id_rsa git@my_server_ip</code><br>自动修复权限问题</p>]]></content>
       
       
       <categories>
