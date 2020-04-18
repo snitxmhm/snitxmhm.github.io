@@ -639,7 +639,7 @@ yum makecache</code></pre>
 <ul>
 <li>配置 GITHOOKS<pre class=" language-bash"><code class="language-bash">vim /var/repo/hexo.git/hooks/post-receive</code></pre>
 添加<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#！/bin/sh</span>
-<span class="token function">git</span> --work-tree<span class="token operator">=</span>/var/www/html --git-dir<span class="token operator">=</span>/var/repo/hexo.git checout -f</code></pre>
+<span class="token function">git</span> --work-tree<span class="token operator">=</span>/var/www/html --git-dir<span class="token operator">=</span>/var/repo/hexo.git checkout -f</code></pre>
 保存退出，设置权限<pre class=" language-bash"><code class="language-bash"><span class="token function">chmod</span> +x /var/repo/hexo.git/hooks/post-receive</code></pre>
 改变hexo.git目录的拥有者为git用户<pre class=" language-bash"><code class="language-bash"><span class="token function">chown</span> -R git:git hexo.git</code></pre>
 </li>
