@@ -117,7 +117,7 @@ blockquote {
 pre {
     padding: 2.5rem 1.5rem 1.5rem 1.5rem !important;
     margin: 1rem 0 !important;
-    background: #8be9fd;
+    background: #272822;
     overflow: auto;
     border-radius: 0.35rem;
     tab-size: 4;
@@ -143,7 +143,7 @@ code {
     font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
     font-size: 0.91rem;
     /*color: #e96900;*/
-    color: #ffb86c;
+    color: #bd93f9;
     background-color: #f8f8f8;
     border-radius: 2px;
 }
@@ -213,7 +213,7 @@ pre[class*="language-"] {
 
 code[class*="language-"],
 pre[class*="language-"] {
-    color: #8be9fd;
+    color: #e8eaf6;
     white-space: pre-wrap !important;
 }
 
