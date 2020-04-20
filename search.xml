@@ -82,9 +82,9 @@
       
         <tags>
             
-            <tag> neofetch </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> neofetch </tag>
             
         </tags>
       
@@ -167,9 +167,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> zsh </tag>
+            
+            <tag> linux </tag>
             
             <tag> oh-my-zsh </tag>
             
@@ -227,13 +227,13 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> web </tag>
             
             <tag> blog </tag>
             
             <tag> manjaro </tag>
+            
+            <tag> linux </tag>
             
             <tag> github </tag>
             
