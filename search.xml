@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>Linux下最佳显卡解决方案</title>
+      <link href="/2020/042864418.html"/>
+      <url>/2020/042864418.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>bumblebee 的 optirun 的兼容性问题； primusrun 关垂直同步的画面撕裂，开垂直同步的输入延迟；直接使用 NVIDIA 的耗电等一系列双显卡之痛之后，发现 optimus-manager 十分适合。可以设置开机默认使用 Intel 还是 Nvidia ，可以随时在这两者之间切换。</p><hr><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装前须知: <code>optimus-manager</code> 上游直接支持的<em>Display Manager</em>为 <code>sddm</code> 、 <code>lightdm</code> 和 <code>gdm</code> ，其他 DM 要用的话需要额外配置 Xsetup 脚本，这里不介绍。</p><p>可以通过<code>AUR</code>安装<a href="https://aur.archlinux.org/packages/optimus-manager/" target="_blank" rel="noopener">optimus-manager</a></p><p>也可以通过<code>archlinxucn</code>源直接安装</p><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> pacman -Sy optimus-manager</code></pre><p>安装完成后开启服务</p><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> systemctl <span class="token function">enable</span> optimus-manager.service</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>首先确保<code>/etc/X11/xorg.conf</code>和<code>/ext/X11/xorg.conf.d</code>下没有其他显卡与显示相关的配置,如果有的话可以直接删除,因为<code>optimus-manager</code>会自动生成显卡配置<code>/etc/X11/xorg.conf.d/10-optimus-manager.conf</code></p><p>如果已经安装<code>bumblebee</code>,请执行以下命令关闭<code>bumblebeed</code></p><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> systemctl disable bumblebeed</code></pre><p>检查<code>/etc/modules-load.d/</code>以确保<code>bbswitch</code>模块不要在开机时被加载</p><p>最后安装<code>nvidia</code>闭源驱动</p><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> pacman -S nvidia-utils</code></pre><h2 id="配置-optimus-maager"><a href="#配置-optimus-maager" class="headerlink" title="配置 optimus-maager"></a>配置 optimus-maager</h2><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/optimus-manager</code></pre><p>将<code>optimus-manager</code>默认配置复制至<code>/etc/optimus-manager</code>进行另外配置</p><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">cp</span> /usr/share/optimus-manager.conf /etc/optimus-manager/optimus-manager.conf$ <span class="token function">sudo</span> vim /etc/optimus-manager/optimus-manager.conf</code></pre><p>各选项配置</p><pre class=" language-text"><code class="language-text">[optimus]# 切换方式，可能值： nouveau, bbswitch, none# 如果选择 none，Nvidia在你使用 Intel 的时候将一直处于通电状态# 如果使用 bbswitch, 在你使用 Intel 的时候将无法使用 Nvidia 上的# 接口输出到外接显示器。# 使用 bbswitch 必须安装 bbswitch 或者 bbswitch-dkms。# bbswitch 暂时还不支持 10系以上显卡 (真的不支持？还是 ACPI 锁死问题呢？)switching=nouveau# 在 Intel 模式下开启 PCI 电源管理# 如果不开的话会你会发现耗电量会比较大# 如果已经使用了 bbswitch 这个选项会被忽略pci_power_control=yes[intel]# 使用哪一个 Intel 驱动# 可能值: modesetting, inteldriver=modesetting# 加速模式# intel 驱动专属，对modesetting无效# 可能值 :  sna, xna# 留空以使用默认值accel=# 开启 TearFree 选项# intel驱动的选项, 对modesetting无效# 可能值: yes, no# 留空以使用默认值tearfree=# DRI 版本. 可能值 : 2, 3DRI=3# 是否对 nouveau 开启 modesetting.# 对 intel 驱动无效# 如果你使用 bbswitch 作为切换方式，这个选项会被忽略modeset=yes[nvidia]# DRI版本，可能值： 2, 3DRI=3# 是否开启 modesetting，如果要使用 PRIME Synchronization 来避免# 画面撕裂的话，必须开启modeset=yes# 是否开启 NVIDIA 驱动的 NVreg_UsePageAttributeTable 选项# 推荐开启，否则可能会导致 CPU 低性能。PAT=yes# DPI 值. 帮你设置登录管理器的 DPI# 原理是启动登录管理器的时候执行：# xrandr --dpi <dpi value># 留空以使用默认值DPI=# Nvidia 专有选项，选项之间以逗号分隔# 支持的选项:# - overclocking : 开启 CoolBits 并在 NVIDIA 面板中解锁超频选项。# - triple_buffer : 开启三倍缓冲options=overclocking</code></pre><p>配置完成后直接重启生效</p><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>确保<code>optimus-manager.service</code>已经运行</p><p>运行</p><pre class=" language-bash"><code class="language-bash">$ optimus-manager --switch nvidia</code></pre><p>切换至nvidia</p><p>运行</p><pre class=" language-bash"><code class="language-bash">$ optimus-manager --switch intel</code></pre><p>切换至intel</p><p>运行</p><pre class=" language-bash"><code class="language-bash">$ optimus-manager --set-startup<span class="token operator">=</span>intel</code></pre><p>设置开机使用intel</p><h2 id="图形前端-optimus-manager-qt"><a href="#图形前端-optimus-manager-qt" class="headerlink" title="图形前端 optimus-manager-qt"></a>图形前端 <code>optimus-manager-qt</code></h2><p><a href="https://github.com/Shatur95/optimus-manager-qt" target="_blank" rel="noopener">optimus-manager-qt</a><br><img src="https://github.com/Askannz/optimus-manager/raw/master/systray.png" alt="optimus-manager-qt"></p><p>gnome-shell 扩展 <a href="https://github.com/inzar98/optimus-manager-argos" target="_blank" rel="noopener">optimus-manager-argos</a><br><img src="https://github.com/inzar98/optimus-manager-argos/raw/master/screenshots/optimus-manager-1.png" alt="optimus-manager-argos"></p><p><code>kde</code>用户可以从<code>archlinuxcn</code>源安装<code>optimus-manager-qt-kde</code></p><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> pacman -Sy optimus-manager-qt-kde</code></pre><p>非<code>kde</code>用户, 安装<code>optimus-manager-qt</code></p><pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> pamcna -Sy optimus-manager-qt</code></pre><p>转载自<a href="https://blog.edward-p.xyz/optimus-manager/" target="_blank" rel="noopener">https://blog.edward-p.xyz/optimus-manager/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> technology </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Arch </tag>
+            
+            <tag> optimius-manager </tag>
+            
+            <tag> 显卡 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LNMP环境配置-Ubuntu18.04</title>
       <link href="/2020/04186753.html"/>
       <url>/2020/04186753.html</url>
