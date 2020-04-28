@@ -747,21 +747,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-27
+                    2020-04-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -859,6 +859,18 @@ keycode 58 = Escape</code></pre>
 <li>用<code>ping</code>检查网络连接</li>
 </ol>
 <h3 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h3><pre class=" language-bash"><code class="language-bash">timedatectl set-ntp <span class="token boolean">true</span></code></pre>
+<h3 id="建立硬盘分区"><a href="#建立硬盘分区" class="headerlink" title="建立硬盘分区"></a>建立硬盘分区</h3><p>硬盘如果被识别到，就会被分配为一个<code>块设备</code>，如<code>/dev/sda</code>.可使用<code>lsblk</code>或<code>fdisk</code>查看</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">fdisk</span> -l</code></pre>
+<p>其中以<code>rom</code>,<code>loop</code>,<code>airoot</code>结束的可以忽略<br>对于系统安装,以下分区是必要的</p>
+<ul>
+<li>一个根分区(挂载在根目录)<code>/</code>;</li>
+<li>如果<code>UEFI</code>模式被启用，还需要一个<code>EFI系统分区</code><br><img src="https://cdn.monsterx.cn/post.archlayout.png.webp" alt="分区示例"><br>这里先介绍<code>swap</code>的作用<br>交换分区相当与虚拟内存,可以帮助运行超出内存上限的部分。在电脑休眠时，所有的内存也是储存至虚拟内存中。<br>因此交换分区的大小可以设置为实际内存的大小</li>
+</ul>
+<p>事先从硬盘中独立分出一分区,大小视个人情况,当然越大越好，至少30G左右<br><code>fdisk -l</code>查看分区<br>根据我的情况，我使用GPT的分区方案<br>这里假设我分出的分区块设备为<code>/dev/sda9</code></p>
+<p>现在正式开始分区,可使用<code>fdisk</code>或<code>cfdisk</code>工具<br>这里使用<code>fdisk</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">fdisk</span> /dev/sda9
+按g建立gpt分区表
+n创建分区 分区序号为1</code></pre>
 
             </div>
             <hr/>
@@ -1545,7 +1557,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.6k</span>&nbsp;字
+                class="white-color">14.2k</span>&nbsp;字
             
             
             
