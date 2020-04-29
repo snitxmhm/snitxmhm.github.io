@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo博客配置(持续更新), The Long Farewell">
+    <meta name="keywords" content="树莓派docker环境部署, The Long Farewell">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo博客配置(持续更新) | The Long Farewell</title>
+    <title>树莓派docker环境部署 | The Long Farewell</title>
     <meta name="google-site-verification" content="Srnb0W4b6XsQaXr2prL25iKnJp3ZGWhr-eSTy7eL0sE" />
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/favicon.png">
 
@@ -577,12 +577,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo博客配置(持续更新)</h1>
+                    <h1 class="description center-align post-title">树莓派docker环境部署</h1>
                 </div>
             </div>
         </div>
@@ -707,32 +707,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/web/">
-                                <span class="chip bg-color">web</span>
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
-                            <a href="/tags/blog/">
-                                <span class="chip bg-color">blog</span>
+                            <a href="/tags/Raspberry-Pi/">
+                                <span class="chip bg-color">Raspberry Pi</span>
                             </a>
                         
-                            <a href="/tags/manjaro/">
-                                <span class="chip bg-color">manjaro</span>
-                            </a>
-                        
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
-                            </a>
-                        
-                            <a href="/tags/github/">
-                                <span class="chip bg-color">github</span>
-                            </a>
-                        
-                            <a href="/tags/gitee/">
-                                <span class="chip bg-color">gitee</span>
-                            </a>
-                        
-                            <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                <span class="chip bg-color">云服务器</span>
+                            <a href="/tags/docker/">
+                                <span class="chip bg-color">docker</span>
                             </a>
                         
                     </div>
@@ -747,6 +731,10 @@
                                 technology
                             </a>
                         
+                            <a href="/categories/technology/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -756,21 +744,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-08
+                    2020-04-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-26
+                    2020-04-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.4k
                 </div>
                 
 
@@ -793,146 +781,151 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Manjaro是一款基于<strong>Arch Linux</strong>、对用户友好、全球排名第一的Linux发行版。<br>使用了一段时间的Manjaro决定将其作为自己的主力系统，因此想把原来的Hexo部署在Manjaro下，同时记录下github、gitee静态网页还有最近白嫖的半年服务器上的配置。</p>
-<h3 id="所需软件安装"><a href="#所需软件安装" class="headerlink" title="所需软件安装"></a>所需软件安装</h3><pre class=" language-zsh"><code class="language-zsh">$sudo pacman -S npm #安装npm nodejs的包管理器
-$sudo npm install -g hexo-cli #安装hexo</code></pre>
-<h3 id="本地博客目录建立"><a href="#本地博客目录建立" class="headerlink" title="本地博客目录建立"></a>本地博客目录建立</h3><pre class=" language-zsh"><code class="language-zsh">$mkdir hexo #创建hexo的本地根目录, 文件夹必须为空
-$cd hexo
-$hexo init . #hexo初始化，从github下载所需组件
-$hexo server #启动hexo， 执行后打开http://localhost:4000/  检查是否初始化成功</code></pre>
-<p>修改<code>_config.yml</code>自定义</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#site</span>
-<span class="token key atrule">title</span><span class="token punctuation">:</span> 网页标题
-<span class="token key atrule">author</span><span class="token punctuation">:</span> 作者名
-<span class="token comment" spellcheck="true">#URL</span>
-<span class="token key atrule">url</span><span class="token punctuation">:</span> 目前看来只要填一个静态页面网站的根目录就行了 例如https<span class="token punctuation">:</span>//ID.gitee.io/
-<span class="token key atrule">root</span><span class="token punctuation">:</span> / 仓库根目录的位置.否则此处要填"/仓库名"， 那样github就无法正常访问了。为了两者都可以正常访问，只能gitee需要将仓库名改为与用户名相同才能像github一样使用一级域名。否则会出现样式异常。</code></pre>
-<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>在<a href="hexo.io/themes">hexo</a>官网挑选一个喜欢的主题</p>
-<p>安装方法：</p>
-<pre class=" language-zsh"><code class="language-zsh">$ git clone https://github.com/blinkfox/hexo-theme-matery.git themes/hexo-theme-matery在hexo根目录下执行这条命令</code></pre>
-<p>启用：<br>修改hexo根目录下的<code>_config.yml</code></p>
-<pre class=" language-yml"><code class="language-yml">theme: hexo-theme-matery</code></pre>
-<h3 id="主题功能自定义"><a href="#主题功能自定义" class="headerlink" title="主题功能自定义"></a>主题功能自定义</h3><h3 id="github静态页面部署"><a href="#github静态页面部署" class="headerlink" title="github静态页面部署"></a>github静态页面部署</h3><h4 id="1-注册Github帐号"><a href="#1-注册Github帐号" class="headerlink" title="1. 注册Github帐号"></a>1. 注册Github帐号</h4><ol>
-<li>新建项目，如图所示</li>
+                <h2 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h2><ol>
+<li>官方脚本安装</li>
 </ol>
-<p><img src="https://i.loli.net/2020/03/26/T78cH9zeaLoFAVi.png" alt="create_repository.png"></p>
+<p>在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspbian 系统上可以使用这套脚本安装，另外可以通过 –mirror 选项使用国内源进行安装：</p>
+<pre class=" language-bash"><code class="language-bash">$ curl -fsSL get.docker.com -o get-docker.sh
+$ <span class="token function">sudo</span> sh get-docker.sh --mirror Aliyun
+<span class="token comment" spellcheck="true"># $ sudo sh get-docker.sh --mirror AzureChinaCloud</span></code></pre>
+<p>这是最为方便的方法</p>
+<p>执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。</p>
 <ol start="2">
-<li>输入项目名，后缀一定为<code>.github.io</code><br>建议项目名与帐号名相同，这样可以使用一级域名 勾选初始化README</li>
+<li>apt安装</li>
 </ol>
-<p>   <img src="https://i.loli.net/2020/03/26/XoKG97M6FbVvEpf.png" alt="creat_new_repository.png"></p>
-<ol start="3">
-<li>项目页面点击settings 下拉有<code>Github Pages</code>, <code>Source</code>改为<code>master branch</code></li>
-</ol>
-<p><img src="https://i.loli.net/2020/03/26/X9fP5724UeyijNH.png" alt="github_pages.png"></p>
-<p>   ，点击<code>Choose a theme</code>选择主题。<br>4. 一会后回到<code>Github Pages</code> 会出现一个链接</p>
-<p><img src="https://i.loli.net/2020/03/26/4ZWTpkU7ntJE6sS.png" alt="2020-03-26 09-05-04屏幕截图.png"></p>
-<h4 id="2-与Github通过ssh通信"><a href="#2-与Github通过ssh通信" class="headerlink" title="2. 与Github通过ssh通信"></a>2. 与Github通过ssh通信</h4><ul>
-<li><p>连接github与本地<br>命令行中输入</p>
-<pre class=" language-git"><code class="language-git">gti config --global user.name <span class="token string">"yourname"</span>
-git config --global user.email <span class="token string">"youremail@xx"</span></code></pre>
-<p>邮箱与用户名根据github注册信息自行修改</p>
-</li>
-<li><p>生成SSH Key密钥 为避免每次上传时输入帐号密码</p>
-<pre class=" language-git"><code class="language-git">ssh-keygen -t rsa -c <span class="token string">"youremail@xx"</span></code></pre>
-</li>
-<li><p>github个人主页，头像下点击<code>setting</code>，<code>SSH and GPG keys</code>,新建ssh，名字无所谓</p>
-<p>  <img src="https://i.loli.net/2020/03/26/GeURkv6BJ2PXdo4.png" alt="key"><br>  <img src="https://i.loli.net/2020/03/26/LD8YHjWkup5Ov1d.png" alt="newssh.png"></p>
-<p>  命令行输入<code>cat ~/.ssh/id_rsa.pub</code><br>  <img src="https://i.loli.net/2020/03/26/3dcm6BrJ825ACy1.png" alt="key.png"><br>  将输出内容复制至刚刚的github页面内,最后一行建议回车一下，留出一个空行,确认保存<br>  输入<code>ssh -T git@github.com</code>,出现如图所示即已经成功<br>  <img src="https://i.loli.net/2020/03/26/vcWZ2xC9NflmXiM.png" alt="2020-03-26 09-27-15屏幕截图.png"></p>
-</li>
-<li><p>config.yml配置<br>  先在github仓库页面，<code>clone or
-  download</code>复制git链接，这里选择的ssh协议，当然https也是可以的</p>
-<p>  <img src="https://i.loli.net/2020/03/26/o32GPZAkslw9Tma.png" alt="2020-03-26 09-35-07屏幕截图.png"></p>
-<p>  打开编辑博客根目录下的<code>_config.yml</code>,修改最后一行的配置<br>  <img src="https://i.loli.net/2020/03/26/8zRepI74Cg2xLvX.png" alt="2020-03-26 09-31-09屏幕截图.png"></p>
-<pre class=" language-yml"><code class="language-yml">deploy:
-type: git
-repo: 
-  github: git@github.com:yourname/yourname.github.io.git 
-  coding: git@e.coding.net:yourname/yourname.git 
-  gitee: git@gitee.com:yourname/yourname.git 
-  server: git@xxx.xx.xx.xx/var/repo/hexo.git
-branch: master</code></pre>
-<p>除去github的那行以外是其他网站的静态页面设置与服务器的设置，下面还有两次部署，步骤大多一样，就不重复了</p>
-</li>
-<li><p>上传<br>博客根目录下安装hexo-deployer-git<br><code>npm i hexo-deployer-git</code><br>输入`hexo new post “article title”,新建文章</p>
-</li>
-</ul>
-<p>然后打开博客根目录/source/_posts会发现多了一个<code>.md</code>文件</p>
-<p>每次写完markdown文件后，博客根目录下 执行<code>hexo generate</code>生成静态网页， 执行<code>hexo server</code>本地预览，<code>hexo deploy</code>上传至github,此时打开github上所创建的静态页面的网址就可以看到发布的文章了。</p>
-<h3 id="gitee静态页面部署"><a href="#gitee静态页面部署" class="headerlink" title="gitee静态页面部署"></a>gitee静态页面部署</h3><p>过程与github页面类似，要注意的是要让仓库的等级与github上一致，即如果github上是使用与用户名相同的仓库时，gitee上也要创建与用户名相同的路径，否则会遇到上传读取的路径冲突的问题。<br><img src="https://i.loli.net/2020/03/26/2D3eAOJG1qn58yd.png" alt="常见问题.png"></p>
-<ul>
-<li>ssh公钥</li>
-</ul>
-<p><img src="https://i.loli.net/2020/03/26/4HGYFkq2oJvdyCz.png" alt="settings.png"></p>
-<p><img src="https://i.loli.net/2020/03/26/V91C6MaXKkit5rE.png" alt="2020-03-26 09-49-00屏幕截图.png"><br><img src="https://i.loli.net/2020/03/26/MkiVbQDXEnJFIw7.png" alt="2020-03-26 09-49-23屏幕截图.png"></p>
-<ul>
-<li><p>config.yml配置</p>
-<p>  配置同github上的</p>
-<p>  <img src="https://i.loli.net/2020/03/26/8zRepI74Cg2xLvX.png" alt="2020-03-26 09-31-09屏幕截图.png"></p>
-</li>
-<li><p>上传</p>
-<h3 id="云服务器部署"><a href="#云服务器部署" class="headerlink" title="云服务器部署"></a>云服务器部署</h3></li>
-<li><p>服务器配置信息<br>服务器为centos 包管理软件为yum 通过ssh连接</p>
-</li>
-<li><p>所需软件</p>
-<pre class=" language-bash"><code class="language-bash">yum <span class="token function">install</span> <span class="token function">git</span> httpd PHP <span class="token comment" spellcheck="true">#centos</span>
-apt get <span class="token function">install</span> <span class="token function">git</span> apache PHP Mysql <span class="token comment" spellcheck="true">#ubuntu</span></code></pre>
-</li>
-<li><p><em>httpd*</em> 等同 <strong>apache</strong><br>由于centos自带的yum中默认不包含MySQL，所以需要先去<a href="https://dev.mysql.com/downloads/repo/yum/?utm_source=hacpai.com" target="_blank" rel="noopener">MySQL官网</a></p>
-</li>
-</ul>
-<p>下载完成后使用文件传输软件或者scp命令拷贝至服务器</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">scp</span> mysql80-community-release-el7-3.noarch.rpm root@1.1.1.1:/usr/local/mysql/</code></pre>
-<p><img src="https://img.hacpai.com/file/2019/06/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2-3585c224.png?imageView2/2/interlace/1/format/jpg" alt="repo"><br>传输完成后在服务器中安装repo源，并更新缓存</p>
-<pre class=" language-bash"><code class="language-bash">rpm -ivh mysql80-community-release-el7-3.noarch.rpm
-yum clean all
-yum makecache</code></pre>
-<p>由于 MySQL 镜像位于国外服务器，可能该步以及后续下载会较慢，建议可以使用<a href="https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/mysql80-community-el7/?utm_source=hacpai.com" target="_blank" rel="noopener">清华大学开源镜像</a>网站替换（该命令仅会下载 community-server 包，其他包的安装依旧需要执行之前安装 repo 源的命令）。</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">wget</span> https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/mysql80-community-el7/mysql-community-server-8.0.16-2.el7.x86_64.rpm</code></pre>
-<p><img src="https://img.hacpai.com/file/2019/06/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE3-7c05bdef.png?imageView2/2/interlace/1/format/jpg" alt="mirror"></p>
-<ul>
-<li>ssh公钥信任</li>
-</ul>
-<p>将主机的ssh公钥添加至服务器<br>即复制主机<code>~/.ssh/id_ras.pub</code>的内容到服务器<code>root/.ssh/authorized_keys</code>文件中</p>
-<ul>
-<li>git仓库建立<ul>
-<li>创建专用于git的用户git<pre class=" language-bash"><code class="language-bash"><span class="token function">useradd</span> <span class="token function">git</span>
-<span class="token function">passwd</span> <span class="token function">git</span></code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://pic3.zhimg.com/80/v2-70c45380cf606d9de2b8085c060fe3ee_720w.jpg" alt="creat_gituser"></p>
-<ul>
-<li><p>创建空仓库<br>创建一个名为blog空仓库并把所有权给git用户</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">mkdir</span> -p /var/repo/
-<span class="token function">cd</span> /var/repo
-<span class="token function">git</span> init --bare hexo.git</code></pre>
-<ul>
-<li>配置 GITHOOKS<pre class=" language-bash"><code class="language-bash">vim /var/repo/hexo.git/hooks/post-receive</code></pre>
-添加<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#！/bin/sh</span>
-<span class="token function">git</span> --work-tree<span class="token operator">=</span>/var/www/html --git-dir<span class="token operator">=</span>/var/repo/hexo.git checkout -f</code></pre>
-保存退出，设置权限<pre class=" language-bash"><code class="language-bash"><span class="token function">chmod</span> +x /var/repo/hexo.git/hooks/post-receive</code></pre>
-改变hexo.git目录的拥有者为git用户<pre class=" language-bash"><code class="language-bash"><span class="token function">chown</span> -R git:git hexo.git</code></pre>
-</li>
-</ul>
-</li>
-<li><p>创建静态文件目录并将git仓库链接到静态文件目录下</p>
-<ul>
-<li><p>创建静态文件目录（文章目录）:<code>mkdir /var/www/html</code> 一般默认html已经存在<br>删除重建即可</p>
-</li>
-<li><p>链接git仓库： <code>chown -R git:git /var/www/html</code></p>
-</li>
-<li><p>配置权限： chmod -R 755 /var/www/html</p>
-</li>
-</ul>
-<p>这样git仓库更新便会自动同步到html目录下</p>
-</li>
-<li><p>上传deployer<br>修改主机上hexo根目录_config.yml</p>
-</li>
-</ul>
-<p>在deployer内添加一行server行<br><img src="https://i.loli.net/2020/03/26/8zRepI74Cg2xLvX.png" alt="2020-03-26 09-31-09屏幕截图.png"></p>
-<p>根目录下执行hexo g &amp;&amp; hexo d 上传博客内容</p>
-<p>至此结束</p>
+<p>由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">apt-get</span> update
+
+$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> \
+     apt-transport-https \
+     ca-certificates \
+     curl \
+     gnupg2 \
+     lsb-release \
+     software-properties-common</code></pre>
+<p>鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。</p>
+<p>为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥。</p>
+<pre class=" language-bash"><code class="language-bash">$ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/raspbian/gpg <span class="token operator">|</span> <span class="token function">sudo</span> apt-key add -
+
+
+<span class="token comment" spellcheck="true"># 官方源</span>
+<span class="token comment" spellcheck="true"># $ curl -fsSL https://download.docker.com/linux/raspbian/gpg | sudo apt-key add -</span></code></pre>
+<p>然后，我们需要向 source.list 中添加 Docker CE 软件源：</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> add-apt-repository \
+    <span class="token string">"deb [arch=armhf] https://mirrors.ustc.edu.cn/docker-ce/linux/raspbian \
+    <span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> \
+    stable"</span>
+
+
+<span class="token comment" spellcheck="true"># 官方源</span>
+<span class="token comment" spellcheck="true"># $ sudo add-apt-repository \</span>
+<span class="token comment" spellcheck="true">#    "deb [arch=armhf] https://download.docker.com/linux/raspbian \</span>
+<span class="token comment" spellcheck="true">#    $(lsb_release -cs) \</span>
+<span class="token comment" spellcheck="true">#    stable"</span></code></pre>
+<blockquote>
+<p>以上命令会添加稳定版本的 Docker CE APT 源，如果需要测试或每日构建版本的 Docker CE 请将 stable 改为 test 或者 nightly。</p>
+</blockquote>
+<p><em>安装 <code>Docker CE</code></em></p>
+<p>更新 apt 软件包缓存，并安装 docker-ce。</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">apt-get</span> update
+
+$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> docker-ce</code></pre>
+<h2 id="建立docker用户组"><a href="#建立docker用户组" class="headerlink" title="建立docker用户组"></a>建立docker用户组</h2><p>默认情况下，<code>docker</code> 命令会使用 Unix socket 与 Docker 引擎通讯。而只有 <code>root</code> 用户和 <code>docker</code> 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 root 用户。因此，更好地做法是将需要使用 <code>docker</code> 的用户加入 <code>docker</code> 用户组。</p>
+<p>建立<code>docker</code>组</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">groupadd</span> docker</code></pre>
+<p>将当前用户加入<code>docker</code>组</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">usermod</span> -a -G docker <span class="token variable">$USER</span></code></pre>
+<p>退出当前终端并重新登录,进行如下测试</p>
+<h2 id="测试Docker是否安装正确"><a href="#测试Docker是否安装正确" class="headerlink" title="测试Docker是否安装正确"></a>测试Docker是否安装正确</h2><pre class=" language-bash"><code class="language-bash">$ docker run arm32v7/hello-world
+Unable to <span class="token function">find</span> image <span class="token string">'hello-world:latest'</span> locally
+latest: Pulling from library/hello-world
+d1725b59e92d: Pull complete
+Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
+Status: Downloaded newer image <span class="token keyword">for</span> hello-world:latest
+
+Hello from Docker<span class="token operator">!</span>
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the <span class="token string">"hello-world"</span> image from the Docker Hub.
+    <span class="token punctuation">(</span>amd64<span class="token punctuation">)</span>
+ 3. The Docker daemon created a new container from that image <span class="token function">which</span> runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, <span class="token function">which</span> sent it
+    to your terminal.
+
+To try something <span class="token function">more</span> ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu <span class="token function">bash</span>
+
+Share images, automate workflows, and <span class="token function">more</span> with a <span class="token function">free</span> Docker ID:
+ https://hub.docker.com/
+
+For <span class="token function">more</span> examples and ideas, visit:
+ https://docs.docker.com/get-started/</code></pre>
+<p>若能正常输出以上信息，则说明安装成功。</p>
+<p>注意： ARM 平台不能使用 <code>x86</code> 镜像，查看 Raspbian 可使用镜像请访问 <a href="https://hub.docker.com/u/arm32v7/" target="_blank" rel="noopener"> arm32v7</a></p>
+<h2 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h2><p>如果在使用过程中发现拉取 Docker 镜像十分缓慢，可以配置 Docker 国内镜像加速。</p>
+<h3 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h3><p>国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了国内加速器服务，例如：</p>
+<p><a href="https://www.163yun.com/help/documents/56918246390157312" target="_blank" rel="noopener">网易加速器https://www.163yun.com/help/documents/56918246390157312</a></p>
+<p><a href="https://cr.console.aliyun.com/cn-hangzhou/mirrors" target="_blank" rel="noopener">阿里云(需登录账号获取)</a></p>
+<blockquote>
+<p>由于镜像服务可能出现宕机，建议同时配置多个镜像。各个镜像站测试结果请到 docker-practice/docker-registry-cn-mirror-test 查看。</p>
+<p>国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考官方文档。</p>
+</blockquote>
+<h4 id="网易云"><a href="#网易云" class="headerlink" title="网易云"></a>网易云</h4><p>对于使用 systemd 的系统，请在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"registry-mirrors"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"https://hub-mirror.c.163.com"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。</p>
+</blockquote>
+<h4 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h4><p>注册后进入控制台 <em>镜像中心</em> -&gt; <em>镜像加速器</em></p>
+<p>它分配了一个加速器地址<br>另附操作文档</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/docker
+<span class="token function">sudo</span> <span class="token function">tee</span> /etc/docker/daemon.json <span class="token operator">&lt;&lt;</span>-<span class="token string">'EOF'</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"registry-mirrors"</span><span class="token keyword">:</span> <span class="token punctuation">[</span><span class="token string">"加速器地址"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+EOF</code></pre>
+<p>之后重新启动服务。</p>
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> systemctl daemon-reload
+$ <span class="token function">sudo</span> systemctl restart docker</code></pre>
+<h3 id="检查加速器是否生效"><a href="#检查加速器是否生效" class="headerlink" title="检查加速器是否生效"></a>检查加速器是否生效</h3><p>执行<code>docker info | grep Mirrors</code></p>
+<p>如果从结果中看到了如下内容，说明配置成功。</p>
+<pre class=" language-bash"><code class="language-bash">Registry Mirrors:
+ https://hub-mirror.c.163.com/</code></pre>
+<p>可以登录 <a href="https://www.aliyun.com/product/acr?source=5176.11533457&userCode=8lx5zmtu&type=copy" target="_blank" rel="noopener">阿里云<br>容器镜像服务</a> 镜像中心 -&gt; 镜像搜索 查找。<br>一般情况下有如下对应关系：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># $ docker pull k8s.gcr.io/xxx</span>
+
+$ docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/xxx</code></pre>
+<h3 id="常用配置和工具命令"><a href="#常用配置和工具命令" class="headerlink" title="常用配置和工具命令"></a>常用配置和工具命令</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#查看 Docker 版本</span>
+docker -v
+<span class="token function">sudo</span> docker pull 仓库/镜像:版本（留空的话默认为 latest）
+<span class="token function">sudo</span> docker run 加参数，用来创建容器
+<span class="token comment" spellcheck="true">#查看运行容器</span>
+<span class="token function">sudo</span> docker <span class="token function">ps</span>
+<span class="token comment" spellcheck="true">#查看所有下载的镜像</span>
+<span class="token function">sudo</span> docker images
+<span class="token comment" spellcheck="true">#进入容器终端</span>
+<span class="token function">sudo</span> docker <span class="token function">exec</span> -i -t ha /bin/bash
+<span class="token comment" spellcheck="true">#实时查看10行的 ha 日志</span>
+<span class="token function">sudo</span> docker logs -f -t --tail 10 ha
+<span class="token comment" spellcheck="true">#重启 systemctl 守护进程</span>
+<span class="token function">sudo</span> systemctl daemon-reload
+<span class="token comment" spellcheck="true">#设置 Docker 开机启动</span>
+<span class="token function">sudo</span> systemctl <span class="token function">enable</span> docker
+<span class="token comment" spellcheck="true">#开启 Docker 服务</span>
+<span class="token function">sudo</span> systemctl start docker
+
+<span class="token comment" spellcheck="true">#下载 Docker 图形化界面 portainer</span>
+<span class="token function">sudo</span> docker pull portainer/portainer
+<span class="token comment" spellcheck="true">#创建 portainer 容器</span>
+<span class="token function">sudo</span> docker volume create portainer_data
+<span class="token comment" spellcheck="true">#运行 portainer</span>
+<span class="token function">sudo</span> docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer</code></pre>
 
             </div>
             <hr/>
@@ -958,7 +951,7 @@ yum makecache</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://snitxmhm.github.io/2020/030948089.html">https://snitxmhm.github.io/2020/030948089.html</a>
+                    <a href="https://snitxmhm.github.io/2020/043058749.html">https://snitxmhm.github.io/2020/043058749.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -996,32 +989,16 @@ yum makecache</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/web/">
-                                    <span class="chip bg-color">web</span>
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
-                                <a href="/tags/blog/">
-                                    <span class="chip bg-color">blog</span>
+                                <a href="/tags/Raspberry-Pi/">
+                                    <span class="chip bg-color">Raspberry Pi</span>
                                 </a>
                             
-                                <a href="/tags/manjaro/">
-                                    <span class="chip bg-color">manjaro</span>
-                                </a>
-                            
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
-                                </a>
-                            
-                                <a href="/tags/github/">
-                                    <span class="chip bg-color">github</span>
-                                </a>
-                            
-                                <a href="/tags/gitee/">
-                                    <span class="chip bg-color">gitee</span>
-                                </a>
-                            
-                                <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                    <span class="chip bg-color">云服务器</span>
+                                <a href="/tags/docker/">
+                                    <span class="chip bg-color">docker</span>
                                 </a>
                             
                         </div>
@@ -1329,29 +1306,25 @@ yum makecache</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/030915622.html">
+                <a href="/2020/043024435.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="Manjaro+i3配置:持续更新">
+                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/8.jpg" class="responsive-img" alt="树莓派docker搭建Calibre-web">
                         
-                        <span class="card-title">Manjaro+i3配置:持续更新</span>
+                        <span class="card-title">树莓派docker搭建Calibre-web</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言Manjaro 是一款基于 Arch Linux 的发行版，拥有 Arch Linux 的所有优点，同时更注重用户友好性和可访问性。
-1.  安装系统
-1.1 准备1.1.1 下载镜像manjaro官网
-
-在社区版中找到i3版本 
-1.
+                            前言之前接触过calibre-web这个项目,确实是一个非常好的管理书籍的项目,同时又不是calibre原软件一成不变的界面风格.最近接触到calibre-web有docker的版本,于是想试试将它部署到服务器上
+先是在阿里云试了试水,可是
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-29
                         </span>
                         <span class="publish-author">
                             
@@ -1365,10 +1338,6 @@ yum makecache</code></pre>
                                     Linux
                                 </a>
                             
-                            <a href="/categories/technology/Linux/i3wm/" class="post-category">
-                                    i3wm
-                                </a>
-                            
                             
                         </span>
                     </div>
@@ -1380,8 +1349,12 @@ yum makecache</code></pre>
                         <span class="chip bg-color">Linux</span>
                     </a>
                     
-                    <a href="/tags/i3wm/">
-                        <span class="chip bg-color">i3wm</span>
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                    <a href="/tags/Raspberry/">
+                        <span class="chip bg-color">Raspberry</span>
                     </a>
                     
                 </div>
@@ -1392,27 +1365,33 @@ yum makecache</code></pre>
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/030948089.html">
+                <a href="/2020/043012687.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="Hexo博客配置(持续更新)">
+                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="Hexo-deploy部署修改端口">
                         
-                        <span class="card-title">Hexo博客配置(持续更新)</span>
+                        <span class="card-title">Hexo-deploy部署修改端口</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言Manjaro是一款基于Arch Linux、对用户友好、全球排名第一的Linux发行版。使用了一段时间的Manjaro决定将其作为自己的主力系统，因此想把原来的Hexo部署在Manjaro下，同时记录下github、gitee静态网页
+                            前言因为上一篇对SSH的默认端口进行修改后，hexo deploy 无法进行部署。因此需要对hexo的配置进行修改
+
+在_config.yml里添加
+deploy:
+    type: git
+    repo:
+        serve
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-29
                             </span>
                         <span class="publish-author">
                             
@@ -1426,36 +1405,15 @@ yum makecache</code></pre>
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/web/">
-                        <span class="chip bg-color">web</span>
+                    <a href="/tags/SSH/">
+                        <span class="chip bg-color">SSH</span>
                     </a>
                     
-                    <a href="/tags/blog/">
-                        <span class="chip bg-color">blog</span>
-                    </a>
-                    
-                    <a href="/tags/manjaro/">
-                        <span class="chip bg-color">manjaro</span>
-                    </a>
-                    
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
-                    </a>
-                    
-                    <a href="/tags/gitee/">
-                        <span class="chip bg-color">gitee</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="chip bg-color">云服务器</span>
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
                     </a>
                     
                 </div>
