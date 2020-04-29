@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Hexo-deploy部署修改端口</title>
+      <link href="/2020/043012687.html"/>
+      <url>/2020/043012687.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为上一篇对SSH的默认端口进行修改后，hexo deploy 无法进行部署。因此需要对hexo的配置进行修改</p><hr><p><em>在<code>_config.yml</code>里添加</em></p><pre class=" language-yml"><code class="language-yml">deploy:    type: git    repo:        server: ssh://username@ip:port/path/to/remote/git</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> technology </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SSH </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于SSH的安全配置</title>
       <link href="/2020/043029841.html"/>
       <url>/2020/043029841.html</url>
