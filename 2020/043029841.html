@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签: Linux, The Long Farewell">
+    <meta name="keywords" content="关于SSH的安全配置, The Long Farewell">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签: Linux | The Long Farewell</title>
+    <title>关于SSH的安全配置 | The Long Farewell</title>
     <meta name="google-site-verification" content="Srnb0W4b6XsQaXr2prL25iKnJp3ZGWhr-eSTy7eL0sE" />
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/favicon.png">
 
@@ -573,630 +573,885 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                The Long Farewell
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['「To say goodbye is to die a little.」','Never really desperate, only the lost of the soul'],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">关于SSH的安全配置</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+        
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    .toc-fixed .toc-link::before{
+        position: fixed!important;/*当toc的位置改为fixed时，.toc-link::before也要改为fixed*/
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/SSH/">
+                                <span class="chip bg-color">SSH</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/technology/" class="post-category">
+                                technology
+                            </a>
+                        
+                            <a href="/categories/technology/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                            <a href="/categories/technology/Linux/Security/" class="post-category">
+                                Security
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-29
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-04-29
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    523
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    1 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近看到黑客扫描网段获取ip之后暴力破解密码造成信息和经济损失的事,就想到自己的树莓派和服务器也是直接暴露在外网,平时输错密码也是常有的事情,也没对密码进行什么限制.这样想想也是有些后怕,害怕密码被通过穷举破解的方法破解.于是去查询了一些关于SSH的安全设置.</p>
+<h3 id="更改SSH默认端口"><a href="#更改SSH默认端口" class="headerlink" title="更改SSH默认端口"></a>更改SSH默认端口</h3><p>大多数恶意扫描都是对默认端口进行扫描 改变默认端口能减少很大的风险</p>
+<pre class=" language-bash"><code class="language-bash">vim /etc/ssh/sshd_config
+-----------------------------------
+Port 22 <span class="token comment" spellcheck="true"># 改为其他端口</span></code></pre>
+<h3 id="关闭ssh密码登录"><a href="#关闭ssh密码登录" class="headerlink" title="关闭ssh密码登录"></a>关闭ssh密码登录</h3><pre class=" language-bash"><code class="language-bash">vim /etc/ssh/sshd_config
+-----------------------------------
+<span class="token comment" spellcheck="true">#PasswordAuthentication yes</span>
+<span class="token comment" spellcheck="true">#取消密码认证的注释 将yes改为no</span></code></pre>
+<h3 id="启用RSA公钥验证"><a href="#启用RSA公钥验证" class="headerlink" title="启用RSA公钥验证"></a>启用RSA公钥验证</h3><pre class=" language-bash"><code class="language-bash">vim /etc/ssh/sshd_config
+----------------------------------
+<span class="token comment" spellcheck="true">#PubkeyAuthentication yes</span>
+<span class="token comment" spellcheck="true">#取消注释</span>
+<span class="token comment" spellcheck="true">#centos 服务器的ssh设置中可能还有</span>
+<span class="token comment" spellcheck="true">#RSAAuthentication yes </span>
+<span class="token comment" spellcheck="true">#取消注释</span>
+AuthorizedKeysFile    .ssh/authorized_keys <span class="token comment" spellcheck="true">#路径改为生成的连接主机的公钥</span></code></pre>
+<h3 id="禁用空密码账户登录"><a href="#禁用空密码账户登录" class="headerlink" title="禁用空密码账户登录"></a>禁用空密码账户登录</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 禁止空密码账户登入（默认禁止）</span>
+PermitEmptyPasswords no</code></pre>
+<h3 id="完成更改"><a href="#完成更改" class="headerlink" title="完成更改"></a>完成更改</h3><p>更改完成后</p>
+<pre class=" language-bash"><code class="language-bash">systemctl restart sshd.service <span class="token comment" spellcheck="true">#重启ssh服务</span></code></pre>
+<p>如果你的服务器有进行防火墙的配置</p>
+<pre class=" language-bash"><code class="language-bash">ufw allow 更改端口/tcp
+<span class="token comment" spellcheck="true">#或者</span>
+firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span>端口/tcp --permanent
+firewall-cmd --complete-reload <span class="token comment" spellcheck="true">#重新载入防火墙配置</span></code></pre>
+<p>另提一句，如果像是阿里云的服务器，还需要在它的安全组中添加开放的端口</p>
+<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>更换了SSH的默认端口后,连接SSH时加上端口参数即可:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ssh</span> -p 端口 example.com</code></pre>
+<p>也可以编辑<code>~/.ssh/config</code>文件,在其中加上<code>Port</code>参数,这样在连接SSH时,可以继续使用更换端口前的命令.</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># ~/.ssh/config</span>
+
+Host example.com
+    Port 端口</code></pre>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>配置简单,修改单行配置并重启服务即可</li>
+<li>有效减少各种针对SSH的扫描</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>使连接 SSH 变得略微麻烦；</li>
+<li>有些时候，我们需要保持 SSH 监听在 22 端口上，那么这种方法就不适用了。</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://snitxmhm.github.io" rel="external nofollow noreferrer">Einsam</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://snitxmhm.github.io/2020/043029841.html">https://snitxmhm.github.io/2020/043029841.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://snitxmhm.github.io" target="_blank">Einsam</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/SSH/">
+                                    <span class="chip bg-color">SSH</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/valine/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/valine/Valine.min.js"></script>
 <script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/banner/' + new Date().getDay() + '.jpg)');
+    new Valine({
+        el: '#vcomments',
+        appId: '9QBh75Hkz7PvpnDax5kDeUx9-gzGzoHsz',
+        appKey: 'iBJ9MsiP09pHAXMrkjHuQANf',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
 </script>
 
-
-    </div>
-</div>
-
-<main class="content">
+    
 
     
 
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/Linux/" title="Linux: 9">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="Linux" style="background-color: #F9EBEA;">Linux
-                        <span class="tag-length">9</span>
-                    </span>
+            <div class="card">
+                <a href="/2020/043029841.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="关于SSH的安全配置">
+                        
+                        <span class="card-title">关于SSH的安全配置</span>
+                    </div>
                 </a>
-                
-                
-                <a href="/tags/i3wm/" title="i3wm: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="i3wm" style="background-color: #F5EEF8;">i3wm
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/vim/" title="vim: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="vim" style="background-color: #D5F5E3;">vim
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/zsh/" title="zsh: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="zsh" style="background-color: #E8F8F5;">zsh
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/web/" title="web: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="web" style="background-color: #FEF9E7;">web
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/blog/" title="blog: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="blog" style="background-color: #F8F9F9;">blog
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/manjaro/" title="manjaro: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="manjaro" style="background-color: #82E0AA;">manjaro
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/linux/" title="linux: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="linux" style="background-color: #D7BDE2;">linux
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/github/" title="github: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="github" style="background-color: #A3E4D7;">github
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/gitee/" title="gitee: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="gitee" style="background-color: #85C1E9;">gitee
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="云服务器: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="云服务器" style="background-color: #F8C471;">云服务器
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/opencv/" title="opencv: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="opencv" style="background-color: #F9E79F;">opencv
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/c-c/" title="c/c++: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="c/c++" style="background-color: #F8C471;">c/c++
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/oh-my-zsh/" title="oh-my-zsh: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="oh-my-zsh" style="background-color: #85C1E9;">oh-my-zsh
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/server/" title="server: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="server" style="background-color: #F9EBEA;">server
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/git/" title="git: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="git" style="background-color: #F8F9F9;">git
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/neofetch/" title="neofetch: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="neofetch" style="background-color: #D5F5E3;">neofetch
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Arch/" title="Arch: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Arch" style="background-color: #FEF9E7;">Arch
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/optimius-manager/" title="optimius-manager: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="optimius-manager" style="background-color: #F9E79F;">optimius-manager
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%98%BE%E5%8D%A1/" title="显卡: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="显卡" style="background-color: #F9E79F;">显卡
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/fcitx/" title="fcitx: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="fcitx" style="background-color: #D7BDE2;">fcitx
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/neovim/" title="neovim: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="neovim" style="background-color: #A3E4D7;">neovim
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/terminal/" title="terminal: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="terminal" style="background-color: #F9EBEA;">terminal
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/proxy/" title="proxy: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="proxy" style="background-color: #85C1E9;">proxy
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/SSH/" title="SSH: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="SSH" style="background-color: #F5EEF8;">SSH
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, SSH" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/043029841.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="关于SSH的安全配置">
-                            
-                            <span class="card-title">关于SSH的安全配置</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前言最近看到黑客扫描网段获取ip之后暴力破解密码造成信息和经济损失的事,就想到自己的树莓派和服务器也是直接暴露在外网,平时输错密码也是常有的事情,也没对密码进行什么限制.这样想想也是有些后怕,害怕密码被通过穷举破解的方法破解.于是去查询了一
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2020-04-29
                             </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/technology/" class="post-category">
+                                    technology
                                 </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
+                            
+                            <a href="/categories/technology/Linux/" class="post-category">
+                                    Linux
                                 </a>
-                                
-                                <a href="/categories/technology/Linux/Security/" class="post-category">
-                                Security
+                            
+                            <a href="/categories/technology/Linux/Security/" class="post-category">
+                                    Security
                                 </a>
-                                
-                                
-                            </span>
-                        </div>
+                            
+                            
+                        </span>
                     </div>
                 </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, vim, fcitx, neovim" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/042812736.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="fcitx与vim的使用优化">
-                            
-                            <span class="card-title">fcitx与vim的使用优化</span>
-                        </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
+                    
+                    <a href="/tags/SSH/">
+                        <span class="chip bg-color">SSH</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/042812736.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="fcitx与vim的使用优化">
+                        
+                        <span class="card-title">fcitx与vim的使用优化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前言将vim作为写博客的编辑工具后,确实体会到许多便捷.但是vim的各种模式切换,使得我需要频繁的手动切换输入法状态.好在有前人也有类似的痛点,最终找到了几种解决方案。
+
+一、在~/.vimrc添加如下代码退出插入模式时，自动关闭Fcitx
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
                             </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/technology/" class="post-category">
+                                    technology
                                 </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
+                            
+                            <a href="/categories/technology/Linux/" class="post-category">
+                                    Linux
                                 </a>
-                                
-                                
-                            </span>
-                        </div>
+                            
+                            
+                        </span>
                     </div>
                 </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, Arch" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/042829861.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="Arch系linux静态ip设置与固定">
-                            
-                            <span class="card-title">Arch系linux静态ip设置与固定</span>
-                        </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-27
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
-                                </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, Arch" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/042818729.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/14.jpg" class="responsive-img" alt="ArchLinux安装全记录(未完更新）">
-                            
-                            <span class="card-title">ArchLinux安装全记录(未完更新）</span>
-                        </div>
+                    
+                    <a href="/tags/vim/">
+                        <span class="chip bg-color">vim</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-27
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
-                                </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, Arch, optimius-manager, 显卡" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/042864418.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/4.jpg" class="responsive-img" alt="Linux下最佳显卡解决方案">
-                            
-                            <span class="card-title">Linux下最佳显卡解决方案</span>
-                        </div>
+                    
+                    <a href="/tags/fcitx/">
+                        <span class="chip bg-color">fcitx</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-27
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
-                                </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, neofetch" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/03304881.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/5.jpg" class="responsive-img" alt="neofetch修改">
-                            
-                            <span class="card-title">neofetch修改</span>
-                        </div>
+                    
+                    <a href="/tags/neovim/">
+                        <span class="chip bg-color">neovim</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
-                                </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
+                    
                 </div>
+                
             </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, terminal, proxy" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/03292214.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/23.jpg" class="responsive-img" alt="一次解决所有代理问题">
-                            
-                            <span class="card-title">一次解决所有代理问题</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
-                                </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, opencv, c/c++" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/032743360.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="Arch/Manjaro linxu下opencv环境搭建">
-                            
-                            <span class="card-title">Arch/Manjaro linxu下opencv环境搭建</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
-                                </a>
-                                
-                                <a href="/categories/technology/opencv/" class="post-category">
-                                opencv
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="Linux, i3wm" data-aos="fade-up">
-                <div class="card">
-                    <a href="/2020/030915622.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="Manjaro+i3配置:持续更新">
-                            
-                            <span class="card-title">Manjaro+i3配置:持续更新</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/technology/" class="post-category">
-                                technology
-                                </a>
-                                
-                                <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
-                                </a>
-                                
-                                <a href="/categories/technology/Linux/i3wm/" class="post-category">
-                                i3wm
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
-    </article>
-</main>
+        
+    </div>
+</article>
 
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
 
 
 

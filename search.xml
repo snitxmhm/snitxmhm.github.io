@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>关于SSH的安全配置</title>
+      <link href="/2020/043029841.html"/>
+      <url>/2020/043029841.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近看到黑客扫描网段获取ip之后暴力破解密码造成信息和经济损失的事,就想到自己的树莓派和服务器也是直接暴露在外网,平时输错密码也是常有的事情,也没对密码进行什么限制.这样想想也是有些后怕,害怕密码被通过穷举破解的方法破解.于是去查询了一些关于SSH的安全设置.</p><h3 id="更改SSH默认端口"><a href="#更改SSH默认端口" class="headerlink" title="更改SSH默认端口"></a>更改SSH默认端口</h3><p>大多数恶意扫描都是对默认端口进行扫描 改变默认端口能减少很大的风险</p><pre class=" language-bash"><code class="language-bash">vim /etc/ssh/sshd_config-----------------------------------Port 22 <span class="token comment" spellcheck="true"># 改为其他端口</span></code></pre><h3 id="关闭ssh密码登录"><a href="#关闭ssh密码登录" class="headerlink" title="关闭ssh密码登录"></a>关闭ssh密码登录</h3><pre class=" language-bash"><code class="language-bash">vim /etc/ssh/sshd_config-----------------------------------<span class="token comment" spellcheck="true">#PasswordAuthentication yes</span><span class="token comment" spellcheck="true">#取消密码认证的注释 将yes改为no</span></code></pre><h3 id="启用RSA公钥验证"><a href="#启用RSA公钥验证" class="headerlink" title="启用RSA公钥验证"></a>启用RSA公钥验证</h3><pre class=" language-bash"><code class="language-bash">vim /etc/ssh/sshd_config----------------------------------<span class="token comment" spellcheck="true">#PubkeyAuthentication yes</span><span class="token comment" spellcheck="true">#取消注释</span><span class="token comment" spellcheck="true">#centos 服务器的ssh设置中可能还有</span><span class="token comment" spellcheck="true">#RSAAuthentication yes </span><span class="token comment" spellcheck="true">#取消注释</span>AuthorizedKeysFile    .ssh/authorized_keys <span class="token comment" spellcheck="true">#路径改为生成的连接主机的公钥</span></code></pre><h3 id="禁用空密码账户登录"><a href="#禁用空密码账户登录" class="headerlink" title="禁用空密码账户登录"></a>禁用空密码账户登录</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 禁止空密码账户登入（默认禁止）</span>PermitEmptyPasswords no</code></pre><h3 id="完成更改"><a href="#完成更改" class="headerlink" title="完成更改"></a>完成更改</h3><p>更改完成后</p><pre class=" language-bash"><code class="language-bash">systemctl restart sshd.service <span class="token comment" spellcheck="true">#重启ssh服务</span></code></pre><p>如果你的服务器有进行防火墙的配置</p><pre class=" language-bash"><code class="language-bash">ufw allow 更改端口/tcp<span class="token comment" spellcheck="true">#或者</span>firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span>端口/tcp --permanentfirewall-cmd --complete-reload <span class="token comment" spellcheck="true">#重新载入防火墙配置</span></code></pre><p>另提一句，如果像是阿里云的服务器，还需要在它的安全组中添加开放的端口</p><h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>更换了SSH的默认端口后,连接SSH时加上端口参数即可:</p><pre class=" language-bash"><code class="language-bash"><span class="token function">ssh</span> -p 端口 example.com</code></pre><p>也可以编辑<code>~/.ssh/config</code>文件,在其中加上<code>Port</code>参数,这样在连接SSH时,可以继续使用更换端口前的命令.</p><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># ~/.ssh/config</span>Host example.com    Port 端口</code></pre><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul><li>配置简单,修改单行配置并重启服务即可</li><li>有效减少各种针对SSH的扫描</li></ul><h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul><li>使连接 SSH 变得略微麻烦；</li><li>有些时候，我们需要保持 SSH 监听在 22 端口上，那么这种方法就不适用了。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> technology </category>
+          
+          <category> Linux </category>
+          
+          <category> Security </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> SSH </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>fcitx与vim的使用优化</title>
       <link href="/2020/042812736.html"/>
       <url>/2020/042812736.html</url>
