@@ -574,6 +574,19 @@
 </header>
 
     
+<script src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -1170,63 +1183,50 @@ suod pacman -S xclip</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/043062173.html">
+                <a href="/2020/043051319.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="ArchLinux下neovim与系统剪贴板互通">
+                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="password">
                         
-                        <span class="card-title">ArchLinux下neovim与系统剪贴板互通</span>
+                        <span class="card-title">password</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            刚装上Arch Linux发现原先neovim中&quot;+yy失效了，搜索后才知道neovim是不自带与系统剪贴板互通的功能
-
-在neovim中输入:h clipboard
-Nvim has no direct connection t
+                            
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/technology/" class="post-category">
-                                    technology
-                                </a>
-                            
-                            <a href="/categories/technology/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="post-category">
+                                    碎碎念
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                        <span class="chip bg-color">碎碎念</span>
                     </a>
                     
-                    <a href="/tags/Arch/">
-                        <span class="chip bg-color">Arch</span>
-                    </a>
-                    
-                    <a href="/tags/neovim/">
-                        <span class="chip bg-color">neovim</span>
+                    <a href="/tags/%E9%9A%8F%E6%83%B3/">
+                        <span class="chip bg-color">随想</span>
                     </a>
                     
                 </div>

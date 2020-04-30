@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="fcitx与vim的使用优化, The Long Farewell">
+    <meta name="keywords" content="password, The Long Farewell">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>fcitx与vim的使用优化 | The Long Farewell</title>
+    <title>password | The Long Farewell</title>
     <meta name="google-site-verification" content="Srnb0W4b6XsQaXr2prL25iKnJp3ZGWhr-eSTy7eL0sE" />
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/favicon.png">
 
@@ -577,7 +577,7 @@
 <script src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = '';
+        let pwd = 'mima';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -590,12 +590,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">fcitx与vim的使用优化</h1>
+                    <h1 class="description center-align post-title">password</h1>
                 </div>
             </div>
         </div>
@@ -720,20 +720,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                                <span class="chip bg-color">碎碎念</span>
                             </a>
                         
-                            <a href="/tags/vim/">
-                                <span class="chip bg-color">vim</span>
-                            </a>
-                        
-                            <a href="/tags/fcitx/">
-                                <span class="chip bg-color">fcitx</span>
-                            </a>
-                        
-                            <a href="/tags/neovim/">
-                                <span class="chip bg-color">neovim</span>
+                            <a href="/tags/%E9%9A%8F%E6%83%B3/">
+                                <span class="chip bg-color">随想</span>
                             </a>
                         
                     </div>
@@ -744,12 +736,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/technology/" class="post-category">
-                                technology
-                            </a>
-                        
-                            <a href="/categories/technology/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="post-category">
+                                碎碎念
                             </a>
                         
                     </div>
@@ -761,21 +749,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-28
+                    2020-04-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-28
+                    2020-04-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    381
+                    0
                 </div>
                 
 
@@ -798,44 +786,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>前言<br>将vim作为写博客的编辑工具后,确实体会到许多便捷.但是vim的各种模式切换,使得我需要频繁的手动切换输入法状态.好在有前人也有类似的痛点,最终找到了几种解决方案。</p>
-<hr>
-<h3 id="一、在-vimrc添加如下代码"><a href="#一、在-vimrc添加如下代码" class="headerlink" title="一、在~/.vimrc添加如下代码"></a>一、在<code>~/.vimrc</code>添加如下代码</h3><p>退出插入模式时，自动关闭<code>Fcitx</code>，反之则反</p>
-<pre class=" language-text"><code class="language-text">"##### auto fcitx  ###########
-let g:input_toggle = 1
-function! Fcitx2en()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status == 2
-      let g:input_toggle = 1
-      let l:a = system("fcitx-remote -c")
-   endif
-endfunction
-
-function! Fcitx2zh()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status != 2 && g:input_toggle == 1
-      let l:a = system("fcitx-remote -o")
-      let g:input_toggle = 0
-   endif
-endfunction
-
-set ttimeoutlen=150
-"退出插入模式
-autocmd InsertLeave * call Fcitx2en()
-"进入插入模式
-autocmd InsertEnter * call Fcitx2zh()
-"##### auto fcitx end ######</code></pre>
-<p><em>注意: 由于要调用外部程序，这将明显拖慢会反复进出插入模式的映射。建议改写相关映射，用带 Python支持的 Vim 加以配合 fcitx.vim 亦可改善效率</em></p>
-<h3 id="二、手动安装fcitx-vim插件"><a href="#二、手动安装fcitx-vim插件" class="headerlink" title="二、手动安装fcitx.vim插件"></a>二、手动安装<code>fcitx.vim</code>插件</h3><p>链接<a href="https://www.vim.org/scripts/script.php?script_id=3764" target="_blank" rel="noopener">https://www.vim.org/scripts/script.php?script_id=3764</a><br>直接将压缩包解压缩在<code>~/.vim/</code>文件夹下<br>这样在vim中就生效了</p>
-<p><code>neovim</code>如果之前没有进行过软连接的话,那就得把压缩包解压缩在<code>~/.config/nvim</code>下</p>
-<p>软连接步骤</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">ln</span> -s ~/.vim ~/.config/nvim
-<span class="token function">ln</span> -s ~/.vimrc ~/.config/nvim/init.vim</code></pre>
-<p>这样就不用另外在neovim文件下进行额外操作了</p>
-<h3 id="三、使用plug安装"><a href="#三、使用plug安装" class="headerlink" title="三、使用plug安装"></a>三、使用<code>plug</code>安装</h3><p>在<code>call plug#begin()</code>和<code>call plug#end()</code>之间添加</p>
-<pre class=" language-bash"><code class="language-bash">Plug <span class="token string">'https://github.com/vim-scripts/fcitx.vim.git'</span></code></pre>
-<h2 id="PlugInstall安装"><a href="#PlugInstall安装" class="headerlink" title="PlugInstall安装"></a><code>PlugInstall</code>安装</h2><p>至此结束</p>
-
+                
             </div>
             <hr/>
 
@@ -860,7 +811,7 @@ autocmd InsertEnter * call Fcitx2zh()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://snitxmhm.github.io/2020/042812736.html">https://snitxmhm.github.io/2020/042812736.html</a>
+                    <a href="https://snitxmhm.github.io/2020/043051319.html">https://snitxmhm.github.io/2020/043051319.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -898,20 +849,12 @@ autocmd InsertEnter * call Fcitx2zh()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                                    <span class="chip bg-color">碎碎念</span>
                                 </a>
                             
-                                <a href="/tags/vim/">
-                                    <span class="chip bg-color">vim</span>
-                                </a>
-                            
-                                <a href="/tags/fcitx/">
-                                    <span class="chip bg-color">fcitx</span>
-                                </a>
-                            
-                                <a href="/tags/neovim/">
-                                    <span class="chip bg-color">neovim</span>
+                                <a href="/tags/%E9%9A%8F%E6%83%B3/">
+                                    <span class="chip bg-color">随想</span>
                                 </a>
                             
                         </div>
@@ -1215,58 +1158,52 @@ autocmd InsertEnter * call Fcitx2zh()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/043029841.html">
+                <a href="/2020/043051319.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="关于SSH的安全配置">
+                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="password">
                         
-                        <span class="card-title">关于SSH的安全配置</span>
+                        <span class="card-title">password</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言最近看到黑客扫描网段获取ip之后暴力破解密码造成信息和经济损失的事,就想到自己的树莓派和服务器也是直接暴露在外网,平时输错密码也是常有的事情,也没对密码进行什么限制.这样想想也是有些后怕,害怕密码被通过穷举破解的方法破解.于是去查询了一
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/technology/" class="post-category">
-                                    technology
-                                </a>
-                            
-                            <a href="/categories/technology/Linux/" class="post-category">
-                                    Linux
-                                </a>
-                            
-                            <a href="/categories/technology/Linux/Security/" class="post-category">
-                                    Security
+                            <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="post-category">
+                                    碎碎念
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+                        <span class="chip bg-color">碎碎念</span>
                     </a>
                     
-                    <a href="/tags/SSH/">
-                        <span class="chip bg-color">SSH</span>
+                    <a href="/tags/%E9%9A%8F%E6%83%B3/">
+                        <span class="chip bg-color">随想</span>
                     </a>
                     
                 </div>
@@ -1280,27 +1217,27 @@ autocmd InsertEnter * call Fcitx2zh()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/042829861.html">
+                <a href="/2020/043062173.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="Arch系linux静态ip设置与固定">
+                        <img src="https://cdn.jsdelivr.net/gh/snitxmhm/snitxmhm.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="ArchLinux下neovim与系统剪贴板互通">
                         
-                        <span class="card-title">Arch系linux静态ip设置与固定</span>
+                        <span class="card-title">ArchLinux下neovim与系统剪贴板互通</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在arch系统的安装过程中,我因为个人的网络环境而有设置静态ip的需求，因而没有选用dhcpcd服务来获取动态ip
-在此记录设置静态ip过程中的思路与一些工具的使用，还有永久固定静态ip的方法
+                            刚装上Arch Linux发现原先neovim中&quot;+yy失效了，搜索后才知道neovim是不自带与系统剪贴板互通的功能
 
-前置知识排查网络连接问题1. 网络接口网卡设
+在neovim中输入:h clipboard
+Nvim has no direct connection t
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-30
                             </span>
                         <span class="publish-author">
                             
@@ -1327,6 +1264,10 @@ autocmd InsertEnter * call Fcitx2zh()
                     
                     <a href="/tags/Arch/">
                         <span class="chip bg-color">Arch</span>
+                    </a>
+                    
+                    <a href="/tags/neovim/">
+                        <span class="chip bg-color">neovim</span>
                     </a>
                     
                 </div>
