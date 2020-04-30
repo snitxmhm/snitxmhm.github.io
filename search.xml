@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>ArchLinux下neovim与系统剪贴板互通</title>
+      <link href="/2020/043062173.html"/>
+      <url>/2020/043062173.html</url>
+      
+        <content type="html"><![CDATA[<p>刚装上<code>Arch Linux</code>发现原先neovim中<code>&quot;+yy</code>失效了，搜索后才知道neovim是不自带与系统剪贴板互通的功能</p><hr><p>在<code>neovim</code>中输入<code>:h clipboard</code></p><pre class=" language-text"><code class="language-text">Nvim has no direct connection to the system clipboard. Instead it depends ona |provider| which transparently uses shell commands to communicate with thesystem clipboard or any other clipboard "backend".</code></pre><hr><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h2><p>使用<code>pacman</code>安装一个用于管理系统剪贴板的命令行工具(<code>xel</code>或<code>xclip</code>)<br>终端中执行</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S xel<span class="token comment" spellcheck="true">#或</span>suod pacman -S xclip</code></pre><p>安装完成后重启<code>neovim</code>,可视模式下选择需要复制的内容,输入<code>&quot;+yy</code>即可以复制到系统剪贴板。</p><p>这时候就可以在其他地方<code>ctrl+v</code>粘贴了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> technology </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Arch </tag>
+            
+            <tag> neovim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>树莓派docker搭建Calibre-web</title>
       <link href="/2020/043024435.html"/>
       <url>/2020/043024435.html</url>
