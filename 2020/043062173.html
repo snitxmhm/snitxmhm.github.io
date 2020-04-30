@@ -788,8 +788,8 @@
 a |provider| which transparently uses shell commands to communicate with the
 system clipboard or any other clipboard "backend".</code></pre>
 <hr>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h2><p>使用<code>pacman</code>安装一个用于管理系统剪贴板的命令行工具(<code>xel</code>或<code>xclip</code>)<br>终端中执行</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S xel
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h2><p>使用<code>pacman</code>安装一个用于管理系统剪贴板的命令行工具(<code>xsel</code>或<code>xclip</code>)<br>终端中执行</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S xsel
 <span class="token comment" spellcheck="true">#或</span>
 suod pacman -S xclip</code></pre>
 <p>安装完成后重启<code>neovim</code>,可视模式下选择需要复制的内容,输入<code>&quot;+yy</code>即可以复制到系统剪贴板。</p>
