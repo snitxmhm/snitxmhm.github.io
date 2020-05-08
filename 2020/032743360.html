@@ -837,7 +837,11 @@ pkg-config --modversion opencv4 <span class="token comment" spellcheck="true"># 
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S opencv</code></pre>
 <p>依赖</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S opencv-samples  qt5-base  vtk</code></pre>
-<p>如果使用的是编译版本, 只需要指定opencv编译位置PATH_TO_BUILD : set(OpenCV_DIR PATH_TO_BUILD),我的CMakeLists.txt是:<br><img src="https://img2018.cnblogs.com/blog/1430038/201905/1430038-20190509101908123-1208636106.png" alt="手动指定"><br>如果使用Arch社区仓库的OPencv4, 可以显式指定opencv版本<code>find_package(OpenCV 4 REQUIRED )</code>.<br><img src="https://img2018.cnblogs.com/blog/1430038/201905/1430038-20190509104744667-1821453979.png" alt="显式指定"></p>
+<p>如果使用的是编译版本, 只需要指定opencv编译位置PATH_TO_BUILD : set(OpenCV_DIR
+PATH_TO_BUILD),我的CMakeLists.txt是:<br><img
+src="https://img2018.cnblogs.com/blog/1430038/201905/1430038-20190509101908123-1208636106.png"
+alt="手动指定"><br>如果使用Arch社区仓库的OPencv4, 可以显式指定opencv版本<code>find_package(OpenCV 4
+REQUIRED )</code>.<br><img src="https://img2018.cnblogs.com/blog/1430038/201905/1430038-20190509104744667-1821453979.png" alt="显式指定"></p>
 
             </div>
             <hr/>
