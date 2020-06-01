@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title>Archlinux-OpenGL环境部署</title>
-      <link href="/2020/051146082.html"/>
-      <url>/2020/051146082.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Hexo-坑-node14.0</title>
       <link href="/2020/050845302.html"/>
       <url>/2020/050845302.html</url>
@@ -594,9 +581,9 @@
       
         <tags>
             
-            <tag> zsh </tag>
-            
             <tag> linux </tag>
+            
+            <tag> zsh </tag>
             
             <tag> oh-my-zsh </tag>
             
