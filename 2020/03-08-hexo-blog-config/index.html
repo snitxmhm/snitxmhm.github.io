@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/logo.png">
+
+    <title>
+        
+          hexo-blog-config - The Long Farewell
+        
+    </title>
+
+    <link rel="canonical" href="https://snitxmhm.github.io/2020/03-08-hexo-blog-config/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Long Farewell</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('post.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Technology" title="Technology">Technology</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                        
+                    </div>
+                    <h1>hexo-blog-config</h1>
+                    <h2 class="subheading">Linux下hexo博客框架部署</h2>
+                    <span class="meta">
+                        Posted by Einsam on
+                        2020-03-08
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Manjaro是一款基于<strong>Arch Linux</strong>、对用户友好、全球排名第一的Linux发行版。</p>
+<p>使用了一段时间的Manjaro决定将其作为自己的主力系统，因此想把原来的Hexo部署在Manjaro下，同时记录下github、gitee静态网页还有最近白嫖的半年服务器上的配置。</p>
+<h3 id="所需软件安装"><a href="#所需软件安装" class="headerlink" title="所需软件安装"></a>所需软件安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sudo</span> pacman -S npm <span class="comment">#安装npm nodejs的包管理器</span></span><br><span class="line"><span class="variable">$sudo</span> npm install -g hexo-cli <span class="comment">#安装hexo</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="本地博客目录建立"><a href="#本地博客目录建立" class="headerlink" title="本地博客目录建立"></a>本地博客目录建立</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mkdir</span> hexo <span class="comment">#创建hexo的本地根目录, 文件夹必须为空</span></span><br><span class="line"><span class="variable">$cd</span> hexo</span><br><span class="line"><span class="variable">$hexo</span> init . <span class="comment">#hexo初始化，从github下载所需组件</span></span><br><span class="line"><span class="variable">$hexo</span> server <span class="comment">#启动hexo， 执行后打开http://localhost:4000/  检查是否初始化成功</span></span><br></pre></td></tr></table></figure>
+
+<p>修改<code>_config.yml</code>自定义</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#site</span><br><span class="line">title: 网页标题</span><br><span class="line">author: 作者名</span><br><span class="line">#URL</span><br><span class="line">url: 目前看来只要填一个静态页面网站的根目录就行了 例如https://ID.gitee.io/</span><br><span class="line">root: / 仓库根目录的位置.否则此处要填&quot;/仓库名&quot;， 那样github就无法正常访问了。为了两者都可以正常访问，只能gitee需要将仓库名改为与用户名相同才能像github一样使用一级域名。否则会出现样式异常。</span><br></pre></td></tr></table></figure>
+
+<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>在<a href="hexo.io/themes">hexo</a>官网挑选一个喜欢的主题</p>
+<p>安装方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/blinkfox/hexo-theme-matery.git themes/hexo-theme-matery在hexo根目录下执行这条命令</span><br></pre></td></tr></table></figure>
+
+<p>启用：</p>
+<p>修改hexo根目录下的<code>_config.yml</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: hexo-theme-matery</span><br></pre></td></tr></table></figure>
+
+<h3 id="主题功能自定义"><a href="#主题功能自定义" class="headerlink" title="主题功能自定义"></a>主题功能自定义</h3><h3 id="github静态页面部署"><a href="#github静态页面部署" class="headerlink" title="github静态页面部署"></a>github静态页面部署</h3><h4 id="1-注册Github帐号"><a href="#1-注册Github帐号" class="headerlink" title="1. 注册Github帐号"></a>1. 注册Github帐号</h4><ol>
+<li>新建项目，如图所示</li>
+</ol>
+<p><img src="https://i.loli.net/2020/03/26/T78cH9zeaLoFAVi.png" alt="create_repository.png"></p>
+<ol>
+<li>输入项目名，后缀一定为<code>.github.io</code></li>
+<li>建议项目名与帐号名相同，这样可以使用一级域名 勾选初始化README</li>
+</ol>
+<p><img src="https://i.loli.net/2020/03/26/XoKG97M6FbVvEpf.png" alt="creat_new_repository.png"></p>
+<ol>
+<li>项目页面点击settings 下拉有<code>Github Pages</code>, <code>Source</code>改为<code>master branch</code></li>
+</ol>
+<p><img src="https://i.loli.net/2020/03/26/X9fP5724UeyijNH.png" alt="github_pages.png"></p>
+<p>，点击<code>Choose a theme</code>选择主题。</p>
+<p>4. 一会后回到<code>Github Pages</code> 会出现一个链接</p>
+<p><img src="https://i.loli.net/2020/03/26/4ZWTpkU7ntJE6sS.png" alt="2020-03-26 09-05-04屏幕截图.png"></p>
+<h4 id="2-与Github通过ssh通信"><a href="#2-与Github通过ssh通信" class="headerlink" title="2. 与Github通过ssh通信"></a>2. 与Github通过ssh通信</h4><ul>
+<li>连接github与本地</li>
+<li>命令行中输入</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gti config --global user.name <span class="string">&quot;yourname&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;youremail@xx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>邮箱与用户名根据github注册信息自行修改</li>
+<li>生成SSH Key密钥 为避免每次上传时输入帐号密码</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -c <span class="string">&quot;youremail@xx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>github个人主页，头像下点击<code>setting</code>，<code>SSH and GPG keys</code>,新建ssh，名字无所谓</li>
+<li><img src="https://i.loli.net/2020/03/26/GeURkv6BJ2PXdo4.png" alt="key"></li>
+<li><img src="https://i.loli.net/2020/03/26/LD8YHjWkup5Ov1d.png" alt="newssh.png"></li>
+<li>命令行输入<code>cat ~/.ssh/id_rsa.pub</code></li>
+<li><img src="https://i.loli.net/2020/03/26/3dcm6BrJ825ACy1.png" alt="key.png"></li>
+<li>将输出内容复制至刚刚的github页面内,最后一行建议回车一下，留出一个空行,确认保存</li>
+<li>输入<code>ssh -T git@github.com</code>,出现如图所示即已经成功</li>
+<li><img src="https://i.loli.net/2020/03/26/vcWZ2xC9NflmXiM.png" alt="2020-03-26 09-27-15屏幕截图.png"></li>
+<li>config.yml配置</li>
+<li>先在github仓库页面，<code>clone or download</code>复制git链接，这里选择的ssh协议，当然https也是可以的</li>
+<li><img src="https://i.loli.net/2020/03/26/o32GPZAkslw9Tma.png" alt="2020-03-26 09-35-07屏幕截图.png"></li>
+<li>打开编辑博客根目录下的<code>_config.yml</code>,修改最后一行的配置</li>
+<li><img src="https://i.loli.net/2020/03/26/8zRepI74Cg2xLvX.png" alt="2020-03-26 09-31-09屏幕截图.png"></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">repo:</span></span><br><span class="line">  <span class="attr">github:</span> <span class="string">git@github.com:yourname/yourname.github.io.git</span></span><br><span class="line">  <span class="attr">coding:</span> <span class="string">git@e.coding.net:yourname/yourname.git</span></span><br><span class="line">  <span class="attr">gitee:</span> <span class="string">git@gitee.com:yourname/yourname.git</span></span><br><span class="line">  <span class="attr">server:</span> <span class="string">git@xxx.xx.xx.xx/var/repo/hexo.git</span></span><br><span class="line"><span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>除去github的那行以外是其他网站的静态页面设置与服务器的设置，下面还有两次部署，步骤大多一样，就不重复了</li>
+<li>上传</li>
+<li>博客根目录下安装hexo-deployer-git</li>
+<li><code>npm i hexo-deployer-git</code></li>
+<li>输入`hexo new post “article title”,新建文章</li>
+</ul>
+<p>然后打开博客根目录/source/_posts会发现多了一个<code>.md</code>文件</p>
+<p>每次写完markdown文件后，博客根目录下 执行<code>hexo generate</code>生成静态网页， 执行<code>hexo server</code>本地预览，<code>hexo deploy</code>上传至github,此时打开github上所创建的静态页面的网址就可以看到发布的文章了。</p>
+<h3 id="gitee静态页面部署"><a href="#gitee静态页面部署" class="headerlink" title="gitee静态页面部署"></a>gitee静态页面部署</h3><p>过程与github页面类似，要注意的是要让仓库的等级与github上一致，即如果github上是使用与用户名相同的仓库时，gitee上也要创建与用户名相同的路径，否则会遇到上传读取的路径冲突的问题。</p>
+<p><img src="https://i.loli.net/2020/03/26/2D3eAOJG1qn58yd.png" alt="常见问题.png"></p>
+<ul>
+<li>ssh公钥</li>
+</ul>
+<p><img src="https://i.loli.net/2020/03/26/4HGYFkq2oJvdyCz.png" alt="settings.png"></p>
+<p><img src="https://i.loli.net/2020/03/26/V91C6MaXKkit5rE.png" alt="2020-03-26 09-49-00屏幕截图.png"></p>
+<p><img src="https://i.loli.net/2020/03/26/MkiVbQDXEnJFIw7.png" alt="2020-03-26 09-49-23屏幕截图.png"></p>
+<ul>
+<li>config.yml配置</li>
+<li>配置同github上的</li>
+<li><img src="https://i.loli.net/2020/03/26/8zRepI74Cg2xLvX.png" alt="2020-03-26 09-31-09屏幕截图.png"></li>
+<li>上传</li>
+</ul>
+<h3 id="云服务器部署"><a href="#云服务器部署" class="headerlink" title="云服务器部署"></a>云服务器部署</h3><ul>
+<li>服务器配置信息</li>
+<li>服务器为centos 包管理软件为yum 通过ssh连接</li>
+<li>所需软件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install git httpd PHP <span class="comment">#centos</span></span><br><span class="line">apt get install git apache PHP Mysql <span class="comment">#ubuntu</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em>httpd*</em> 等同 <strong>apache</strong></li>
+<li>由于centos自带的yum中默认不包含MySQL，所以需要先去<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/repo/yum/?utm_source=hacpai.com">MySQL官网</a></li>
+</ul>
+<p>下载完成后使用文件传输软件或者scp命令拷贝至服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp mysql80-community-release-el7-3.noarch.rpm root@1.1.1.1:/usr/<span class="built_in">local</span>/mysql/</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.hacpai.com/file/2019/06/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2-3585c224.png?imageView2/2/interlace/1/format/jpg" alt="repo"></p>
+<p>传输完成后在服务器中安装repo源，并更新缓存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<p>由于 MySQL 镜像位于国外服务器，可能该步以及后续下载会较慢，建议可以使用<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/mysql80-community-el7/?utm_source=hacpai.com">清华大学开源镜像</a>网站替换（该命令仅会下载 community-server 包，其他包的安装依旧需要执行之前安装 repo 源的命令）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/mysql80-community-el7/mysql-community-server-8.0.16-2.el7.x86\_64.rpm</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img.hacpai.com/file/2019/06/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE3-7c05bdef.png?imageView2/2/interlace/1/format/jpg" alt="mirror"></p>
+<ul>
+<li>ssh公钥信任</li>
+</ul>
+<p>将主机的ssh公钥添加至服务器</p>
+<p>即复制主机<code>~/.ssh/id_ras.pub</code>的内容到服务器<code>root/.ssh/authorized_keys</code>文件中</p>
+<ul>
+<li>git仓库建立</li>
+<li>创建专用于git的用户git</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd git</span><br><span class="line">passwd git</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-70c45380cf606d9de2b8085c060fe3ee_720w.jpg" alt="creat_gituser"></p>
+<ul>
+<li>创建空仓库</li>
+<li>创建一个名为blog空仓库并把所有权给git用户</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/repo/</span><br><span class="line"><span class="built_in">cd</span> /var/repo</span><br><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置 GITHOOKS</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /var/repo/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#！/bin/sh</span></span><br><span class="line">git --work-tree=/var/www/html --git-dir=/var/repo/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>保存退出，设置权限</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /var/repo/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>改变hexo.git目录的拥有者为git用户</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R git:git hexo.git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建静态文件目录并将git仓库链接到静态文件目录下</li>
+<li>创建静态文件目录（文章目录）:<code>mkdir /var/www/html</code> 一般默认html已经存在</li>
+<li>删除重建即可</li>
+<li>链接git仓库： <code>chown -R git:git /var/www/html</code></li>
+<li>配置权限： chmod -R 755 /var/www/html</li>
+<li>这样git仓库更新便会自动同步到html目录下</li>
+<li>上传deployer</li>
+<li>修改主机上hexo根目录_config.yml</li>
+</ul>
+<p>在deployer内添加一行server行</p>
+<p><img src="https://i.loli.net/2020/03/26/8zRepI74Cg2xLvX.png" alt="2020-03-26 09-31-09屏幕截图.png"></p>
+<p>根目录下执行hexo g &amp;&amp; hexo d 上传博客内容</p>
+<p>至此结束</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2015/04-14-unix-linux-note/" data-toggle="tooltip" data-placement="top" title="Example Post With Default Header Image">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Technology" title="Technology">Technology</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://snitxmhm.github.io/2020/03-08-hexo-blog-config/";
+    var disqus_url = "https://snitxmhm.github.io/2020/03-08-hexo-blog-config/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; The Long Farewell 2020 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://snitxmhm.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
