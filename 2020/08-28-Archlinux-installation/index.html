@@ -13,11 +13,11 @@
 
     <title>
         
-          Archives - The Long Farewell
+          Archlinux-installation - The Long Farewell
         
     </title>
 
-    <link rel="canonical" href="https://snitxmhm.github.io/archives/">
+    <link rel="canonical" href="https://snitxmhm.github.io/2020/08-28-Archlinux-installation/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -153,104 +153,204 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Archives</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Archives.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Technology" title="Technology">Technology</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#ArchLinux" title="ArchLinux">ArchLinux</a>
+                        
+                    </div>
+                    <h1>Archlinux-installation</h1>
+                    <h2 class="subheading">记一次完整的安装记录</h2>
+                    <span class="meta">
+                        Posted by Einsam on
+                        2020-08-28
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-            
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为一次失误导致先前的 <strong>Manjaro Linux</strong> 分区格式化，不想重新恢复原来的环境，又加上对Archlinux的喜爱，所以决定将全部的重心都转移到<strong>Archlinux</strong>上。这段时间重装了好几次系统，感觉对archlinux的安装已经轻车熟路。由于博客也因此重置，先前Manjaro的安装记录也不太想再恢复，于是决定参考翻译archwiki, 并记录一份完整的Archlinux安装过程，替换原来的文章。</p>
+<h2 id="Pre-installation"><a href="#Pre-installation" class="headerlink" title="Pre-installation"></a>Pre-installation</h2><h3 id="需要一份安装镜像"><a href="#需要一份安装镜像" class="headerlink" title="需要一份安装镜像"></a>需要一份安装镜像</h3><p>访问 arch<a target="_blank" rel="noopener" href="https://www.archlinux.org/download/">官网</a>获取BT种子或磁力链接下载。HTTP下载有被劫持的风险，因此不太建议。</p>
+<h3 id="准备安装介质"><a href="#准备安装介质" class="headerlink" title="准备安装介质"></a>准备安装介质</h3><p>一个8G左右的U盘。Windows下建议使用<a target="_blank" rel="noopener" href="https://rufus.ie/">Rufus</a>。Linux下<a target="_blank" rel="noopener" href="https://www.balena.io/etcher/">etcher</a>，或者dd进行镜像的烧录。</p>
+<h3 id="启动进入live系统环境"><a href="#启动进入live系统环境" class="headerlink" title="启动进入live系统环境"></a>启动进入live系统环境</h3><p>开机进入<strong>BIOS</strong>，关闭安全启动<strong>Security Boot</strong>，关闭<strong>Legacy Mode</strong>，启用<strong>UEFI</strong>模式。调整启动顺序，选用U盘启动。</p>
+<h3 id="选择键盘布局"><a href="#选择键盘布局" class="headerlink" title="选择键盘布局"></a>选择键盘布局</h3><p>默认键盘布局为US。可选项为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ls /usr/share/kbd/keymaps/**/*.map.gz</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>loadkeys</code>选择布局</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># loadkeys colemak</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Console_fonts">Console fonts</a> <code>控制台字体位于</code>/usr/share/kbd/consolefonts/` 可以使用 <a target="_blank" rel="noopener" href="https://jlk.fjfi.cvut.cz/arch/manpages/man/setfont.8">setfont(8)</a>来设置字体。</p>
+<h3 id="确认启动模式"><a href="#确认启动模式" class="headerlink" title="确认启动模式"></a>确认启动模式</h3><p>为了确认启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ls /sys/firmware/efi/efivars</span></span><br></pre></td></tr></table></figure>
+
+<p>如果有结果输出，则系统是以UEFI模式启动。否则为BIOS或CSM.</p>
 
 
+                <hr>
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-                    <span class="tag-text">2020</span>
-                </span>
-                <ul>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    08-28
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/08-28-Archlinux-installation/" style="color: #0085a1">
-                        <span>
-                            Archlinux-installation
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-08
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2020/03-08-hexo-blog-config/" style="color: #0085a1">
-                        <span>
-                            hexo-blog-config
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
                 
 
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/03-08-hexo-blog-config/" data-toggle="tooltip" data-placement="top" title="hexo-blog-config">Next Post &rarr;</a>
+                        </li>
+                    
                 </ul>
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2015">
-                    <span class="tag-text">2015</span>
-                </span>
-                <ul>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    04-14
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2015/04-14-unix-linux-note/" style="color: #0085a1">
-                        <span>
-                            Example Post With Default Header Image
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
+
                 
 
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Technology" title="Technology">Technology</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#ArchLinux" title="ArchLinux">ArchLinux</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
                 </ul>
+                
             </div>
-            
-
 
         </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://snitxmhm.github.io/2020/08-28-Archlinux-installation/";
+    var disqus_url = "https://snitxmhm.github.io/2020/08-28-Archlinux-installation/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
