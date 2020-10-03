@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/logo.png">
+
+    <title>
+        
+          zsh+oh-my-zsh配置 - The Long Farewell
+        
+    </title>
+
+    <link rel="canonical" href="https://snitxmhm.github.io/2020/03-09-zsh-oh-my-zsh配置/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Long Farewell</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('post.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#zsh" title="zsh">zsh</a>
+                        
+                          <a class="tag" href="/tags/#oh-my-zsh" title="oh-my-zsh">oh-my-zsh</a>
+                        
+                    </div>
+                    <h1>zsh+oh-my-zsh配置</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Einsam on
+                        2020-03-09
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013612471">https://segmentfault.com/a/1190000013612471</a></p>
+<p>本文以CentOS 7/Mac 为例，介绍zsh的配置使用教程。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="查看当前环境shell"><a href="#查看当前环境shell" class="headerlink" title="查看当前环境shell"></a>查看当前环境shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查看系统自带哪些shell"><a href="#查看系统自带哪些shell" class="headerlink" title="查看系统自带哪些shell"></a>查看系统自带哪些shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install zsh <span class="comment"># CentOS</span></span><br><span class="line">brew install zsh <span class="comment"># mac安装</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="将zsh设置为默认shell"><a href="#将zsh设置为默认shell" class="headerlink" title="将zsh设置为默认shell"></a>将<code>zsh</code>设置为默认shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh <span class="comment"># CentOS</span></span><br><span class="line"><span class="comment"># Mac如下</span></span><br><span class="line"><span class="comment"># 在 /etc/shells 文件中加入如下一行</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/zsh</span><br><span class="line"><span class="comment"># 接着运行</span></span><br><span class="line">chsh -s /usr/<span class="built_in">local</span>/bin/zsh</span><br></pre></td></tr></table></figure>
+
+<p>可以通过<code>echo $SHELL</code>查看当前默认的shell，如果没有改为<code>/bin/zsh</code>，那么需要重启shell。</p>
+<h2 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h2><p>配置zsh是一件麻烦的事儿，爱折腾的程序猿怎么可能忍受？！于是，<a target="_blank" rel="noopener" href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>出现了，有了这个东东，zsh配置起来就方便多了！</p>
+<h3 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h3><p>有若干安装方式，介绍三种：<br>1.自动安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</span><br></pre></td></tr></table></figure>
+
+<p>2.手动安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>3.真-手动安装</p>
+<ul>
+<li>在<a target="_blank" rel="noopener" href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>的github主页，手动将zip包下载下来。</li>
+<li>将zip包解压，拷贝至<code>~/.oh-my-zsh</code>目录。此处省略拷贝的操作步骤。</li>
+<li>执行<code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></li>
+</ul>
+<p>三选一即可，适合各种环境下的安装，然后需要<code>source ~/.zshrc</code>将配置生效。以下修改了<code>.zshrc</code>文件之后，都执行一下这个命令。</p>
+<h3 id="zsh主题"><a href="#zsh主题" class="headerlink" title="zsh主题"></a>zsh主题</h3><p>通过如下命令可以查看可用的<code>Theme</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ls ~/.oh-my-zsh/themes</span></span><br></pre></td></tr></table></figure>
+
+<p>如何修改zsh主题呢？<br>编辑<code>~/.zshrc</code>文件，将<code>ZSH_THEME=&quot;candy&quot;</code>,即将主题修改为<code>candy</code>。我采用的<code>steeef</code>。</p>
+<h3 id="zsh扩展"><a href="#zsh扩展" class="headerlink" title="zsh扩展"></a>zsh扩展</h3><p>在<code>~/.zshrc</code>中找到<code>plugins</code>关键字，就可以自定义启用的插件了，系统默认加载<code>git</code>。</p>
+<h4 id="git插件"><a href="#git插件" class="headerlink" title="git插件"></a>git插件</h4><p>命令内容可以参考<code>cat ~/.oh-my-zsh/plugins/git/git.plugin.zsh</code>。</p>
+<p>常用的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">gapa    git add --patch</span><br><span class="line">gc!    git commit -v --amend</span><br><span class="line">gcl    git <span class="built_in">clone</span> --recursive</span><br><span class="line">gclean    git reset --hard &amp;&amp; git clean -dfx</span><br><span class="line">gcm    git checkout master</span><br><span class="line">gcmsg    git commit -m</span><br><span class="line">gco    git checkout</span><br><span class="line">gd    git diff</span><br><span class="line">gdca    git diff --cached</span><br><span class="line">gp    git push</span><br><span class="line">grbc    git rebase --<span class="built_in">continue</span></span><br><span class="line">gst    git status</span><br><span class="line">gup    git pull --rebase</span><br></pre></td></tr></table></figure>
+
+<p>完整列表：<code>https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git</code></p>
+<h3 id="extract"><a href="#extract" class="headerlink" title="extract"></a>extract</h3><p>解压文件用的，所有的压缩文件，都可以直接<code>x filename</code>，不用记忆参数</p>
+<p>当然，如果你想要用<code>tar</code>命令，可以使用<code>tar -</code>加<code>tab</code>键，zsh会列出参数的含义。</p>
+<h4 id="autojump"><a href="#autojump" class="headerlink" title="autojump"></a>autojump</h4><p>按照<a target="_blank" rel="noopener" href="https://github.com/wting/autojump">官方文档</a>介绍，需要使用如下命令安装，而不是一些博客中的介绍：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install autojump-zsh <span class="comment"># CentOS</span></span><br><span class="line">brew install autojump <span class="comment"># Mac</span></span><br></pre></td></tr></table></figure>
+
+<p><code>CentOS</code>安装好之后，需要在<code>~/.zshrc</code>中配置一下，除了在<code>plugins</code>中增加<code>autojump</code>之外，还需要添加一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; . ~/.autojump/etc/profile.d/autojump.sh</span><br></pre></td></tr></table></figure>
+
+<p>安装好之后，记得<code>source ~/.zshrc</code>，然后你就可以通过<code>j+目录名</code>快速进行目录跳转。支持目录名的模糊匹配和自动补全。</p>
+<ul>
+<li><code>j -stat</code>：可以查看历史路径库</li>
+</ul>
+<h4 id="zsh-autosuggestions"><a href="#zsh-autosuggestions" class="headerlink" title="zsh-autosuggestions"></a>zsh-autosuggestions</h4><p><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>~/.zshrc</code> 中配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(其他的插件 zsh-autosuggestions)</span><br></pre></td></tr></table></figure>
+
+<p>因为箭头<code>→</code>不太方便，在<code>.zshrc</code>中自定义补全快捷键为逗号，但是又一次遇到了需要输入逗号的情况，所以，并不太推荐如下修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;,&#x27;</span> autosuggest-accept</span><br></pre></td></tr></table></figure>
+
+<h4 id="zsh-syntax-highlighting"><a href="#zsh-syntax-highlighting" class="headerlink" title="zsh-syntax-highlighting"></a>zsh-syntax-highlighting</h4><p><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure>
+
+<p><code>~/.zshrc</code>文件中配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(其他的插件 zsh-syntax-highlighting)</span><br></pre></td></tr></table></figure>
+
+<h4 id="git-open"><a href="#git-open" class="headerlink" title="git-open"></a>git-open</h4><p><a target="_blank" rel="noopener" href="https://github.com/paulirish/git-open">git-open</a>插件可以在你git项目下打开远程仓库浏览项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/paulirish/git-open.git <span class="variable">$ZSH_CUSTOM</span>/plugins/git-open</span><br></pre></td></tr></table></figure>
+
+<h4 id="bat"><a href="#bat" class="headerlink" title="bat"></a>bat</h4><p><code>bat</code> 代替 <code>cat</code><br><code>cat</code> 某个文件，可以在终端直接输出文件内容，<code>bat</code> 相比 <code>cat</code> 增加了行号和颜色高亮 👍</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install bat</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><ul>
+<li>命令历史记录<ul>
+<li>一旦在 shell 敲入正确命令并能执行后，shell 就会存储你所敲入命令的历史记录（存放在<code>~/.zsh_history</code> 文件中），方便再次运行之前的命令。可以按方向键↑和↓来查看之前执行过的命令</li>
+<li>可以用 <code>r</code>来执行上一条命令</li>
+<li>使用 <code>ctrl-r</code> 来搜索命令历史记录</li>
+</ul>
+</li>
+<li>命令别名<ul>
+<li>可以简化命令输入，在 <code>.zshrc</code> 中添加 <code>alias shortcut=&#39;this is the origin command&#39;</code> 一行就相当于添加了别名</li>
+<li>在命令行中输入 <code>alias</code> 可以查看所有的命令别名</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h2><ul>
+<li>连按两次Tab会列出所有的补全列表并直接开始选择，补全项可以使用 ctrl+n/p/f/b上下左右切换</li>
+<li>智能跳转，安装了 autojump 之后，zsh 会自动记录你访问过的目录，通过 j 目录名 可以直接进行目录跳转，而且目录名支持模糊匹配和自动补全，例如你访问过 hadoop-1.0.0 目录，输入j hado 即可正确跳转。j –stat 可以看你的历史路径库。</li>
+<li>命令选项补全。在zsh中只需要键入 tar - 就会列出所有的选项和帮助说明</li>
+<li>在当前目录下输入 .. 或 … ，或直接输入当前目录名都可以跳转，你甚至不再需要输入 <code>cd</code> 命令了。在你知道路径的情况下，比如 <code>/usr/local/bin</code> 你可以输入<code>cd /u/l/b</code> 然后按进行补全快速输入</li>
+<li>目录浏览和跳转：输入 d，即可列出你在这个会话里访问的目录列表，输入列表前的序号，即可直接跳转。</li>
+<li>命令参数补全。键入<code>kill</code> 就会列出所有的进程名和对应的进程号</li>
+<li>更智能的历史命令。在用或者方向上键查找历史命令时，zsh支持限制查找。比如，输入ls,然后再按方向上键，则只会查找用过的ls命令。而此时使用则会仍然按之前的方式查找，忽略 ls</li>
+<li>多个终端会话共享历史记录</li>
+<li>通配符搜索：<code>ls -l **/*.sh</code>，可以递归显示当前目录下的 shell 文件，文件少时可以代替 <code>find</code>。使用 <code>**/</code> 来递归搜索</li>
+<li>扩展环境变量，输入环境变量然后按 就可以转换成表达的值</li>
+<li>在 .zshrc 中添加 <code>setopt HIST_IGNORE_DUPS</code> 可以消除重复记录，也可以利用<code>sort -t &quot;;&quot; -k 2 -u ~/.zsh_history | sort -o ~/.zsh_history</code>手动清除</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Michael728/my-config-files">Github-Michael728/my-config-files</a> 附上我的配置文件地址；</li>
+<li><a target="_blank" rel="noopener" href="https://michael728.github.io/2018/03/11/tools-zsh-tutorial/">zsh+on-my-zsh配置教程指南</a> 本文地址</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/wting/autojump">wting/autojump–官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/powerline/fonts">powerline/fonts</a></li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://macshuo.com/?p=676">终极 Shell</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/EasonJim/p/7863099.html">Ubuntu 16.04下安装zsh和oh-my-zsh</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9a5c4cb0452d">Ubuntu 下安装oh-my-zsh</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/entry/5b46b268f265da0f793a5ae1">掘金-Shell 中的极品– Zsh</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/huangbo10/article/details/50930002">CentOS 7下autojump无法使用的可能原因</a></li>
+<li><a target="_blank" rel="noopener" href="http://yijiebuyi.com/blog/b9b5e1ebb719f22475c38c4819ab8151.html">oh-my-zsh配置你的zsh提高shell逼格终极选择</a></li>
+</ul>
+<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://hufangyun.com/2017/zsh-plugin/">zsh oh-my-zsh 插件推荐</a></li>
+<li><a target="_blank" rel="noopener" href="http://wdxtub.com/2016/02/18/oh-my-zsh/">zsh 全程指南-推荐</a></li>
+<li><a target="_blank" rel="noopener" href="https://iterm2colorschemes.com/">iterm主题下载</a></li>
+<li><a target="_blank" rel="noopener" href="https://xiaozhou.net/learn-the-command-line-iterm-and-zsh-2017-06-23.html">程序员内功系列–iTerm与Zsh篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dreamxu.com/mac-terminal/">Mac 下配置终端环境 iTerm2 + Zsh + Oh My Zsh + tmux</a></li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/03-26-linxu下opencv环境搭建/" data-toggle="tooltip" data-placement="top" title="linxu下opencv环境搭建">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/03-08-hexo-blog-config/" data-toggle="tooltip" data-placement="top" title="hexo-blog-config">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#zsh" title="zsh">zsh</a>
+                        
+                          <a class="tag" href="/tags/#oh-my-zsh" title="oh-my-zsh">oh-my-zsh</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://snitxmhm.github.io/2020/03-09-zsh-oh-my-zsh%E9%85%8D%E7%BD%AE/";
+    var disqus_url = "https://snitxmhm.github.io/2020/03-09-zsh-oh-my-zsh%E9%85%8D%E7%BD%AE/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; The Long Farewell 2020 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://snitxmhm.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

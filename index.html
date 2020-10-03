@@ -211,28 +211,27 @@
 
 <div class="post-preview">
 
-    <a href="/2020/03-29-一次解决所有代理问题/">
+    <a href="/2020/05-01-arm64架构openwrt-docker部署/">
         <h2 class="post-title">
-            一次解决所有代理问题
+            arm64架构openwrt-docker部署
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            Linux 让终端走代理的集中方法
-通过让终端走代理的方式来加快gitclone的速度。
+            前言:总想把树莓派闲置的资源给利用起来,给树莓派装上64位系统的起因也是因为原先的openwrt突然出故障,无处寻找原因就只能重新安装。也因此发现了manjaro arm64版本
+docker安装可看前面的文章
+拉取镜像与配置1. 打开网卡混杂模式
+1sudo ip link set eth0 promisc on
 
-前期准备
-认识代理的方式：代理是通过客户端与服务端通信，传输服务端能够访问到的资源文件，再由服务端客户端通信返回给客户端，从而间接访问服务端能够访问的资源
-
-首先确定自己服务端代理的通讯协议。 socks，http，https
-方法一:直接在终端中运行:
-1export http_proxy=http......
+此处的eth0为有线网卡接口名
+2. 创建网络
+（需结合实际网络情况进行修......
         </div>
     </a>
     <p class="post-meta">
         Posted by Einsam on
-        2020-03-29
+        2020-05-01
     </p>
 
 </div>
@@ -240,22 +239,21 @@
 
 <div class="post-preview">
 
-    <a href="/2020/03-08-hexo-blog-config/">
+    <a href="/2020/05-01-Linux硬盘的自动挂载/">
         <h2 class="post-title">
-            hexo-blog-config
+            Linux硬盘的自动挂载
         </h2>
         <h3 class="post-subtitle">
-            Linux下hexo博客框架部署
+            
         </h3>
         <div class="post-content-preview">
-            前言Manjaro是一款基于Arch Linux、对用户友好、全球排名第一的Linux发行版。
-使用了一段时间的Manjaro决定将其作为自己的主力系统，因此想把原来的Hexo部署在Manjaro下，同时记录下github、gitee静态网页还有最近白嫖的半年服务器上的配置。
-所需软件安装12$sudo pacman -S npm #安装npm nodejs的包管理器$sudo npm in......
+            前言Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda.同时为了区分每个分区，会分配给每个分区一个UUID在使用calibre-web的时候，我想要将书籍单独放置在U盘里,因此开机自动挂载U盘的需求产生了
+一、Linux UUID的作用及其意义1. 真正的唯一标识符UUID为系统中存储设备提供的唯一标识字符串。也不管这个设备是什么分区类型。当对设备添加了新的存储......
         </div>
     </a>
     <p class="post-meta">
         Posted by Einsam on
-        2020-03-08
+        2020-05-01
     </p>
 
 </div>
@@ -263,38 +261,171 @@
 
 <div class="post-preview">
 
-    <a href="/2015/04-14-unix-linux-note/">
+    <a href="/2020/04-30-Archlinux下neovim与系统剪切板互通/">
         <h2 class="post-title">
-            Example Post With Default Header Image
+            Archlinux下neovim与系统剪切板互通
         </h2>
         <h3 class="post-subtitle">
-            不适合人类阅读，非常水的自我笔记
+            
         </h3>
         <div class="post-content-preview">
-            
-This document is not completed and will be updated anytime.
+              刚装上Arch Linux发现原先neovim中&quot;+yy失效了，搜索后才知道neovim是不自带与系统剪贴板互通的功能
 
-Catagory
-Unix
-Bell Labs
-Xenix
-BSD
-FreeBSD &amp; Apple
-NeXTStep
-Darwin
-POSIX
-
-
-Unix-like
-Single Unix Specification
-Apple iOS
-XNU Kernel
-......
+   在neovim中输入:h clipboard
+   123Nvim has no direct connection to the system clipboard. Instead it depends ona |provider| which tr......
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on
-        2015-04-14
+        Posted by Einsam on
+        2020-04-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04-30-记甜蜜蜜/">
+        <h2 class="post-title">
+            记甜蜜蜜
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+“爱之于我，不是肌肤之亲，不是一蔬一饭，它是一种不死的欲望，是疲惫生活中的英雄梦想。”
+
+
+有些东西，生活自会让幼稚的我们明白。只是需要一点点时间罢了。
+
+不知道有多少人是把《甜蜜蜜》当作爱情片来看的。第一次看这部电影还是小学，家里刚买VCD机的时候。那个年纪当然不懂爱情，也很快淡忘了这部片子。只依稀记得李翘坐在黎小军的单车后座晃着腿哼着歌的画面。后来，是高中的时候，握着遥控器换台，看到有......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Einsam on
+        2020-04-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04-29-关于SSH的安全配置/">
+        <h2 class="post-title">
+            关于SSH的安全配置
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言最近看到黑客扫描网段获取ip之后暴力破解密码造成信息和经济损失的事,就想到自己的树莓派和服务器也是直接暴露在外网,平时输错密码也是常有的事情,也没对密码进行什么限制.这样想想也是有些后怕,害怕密码被通过穷举破解的方法破解.于是去查询了一些关于SSH的安全设置.
+更改SSH默认端口大多数恶意扫描都是对默认端口进行扫描 改变默认端口能减少很大的风险
+vim /etc/ssh/sshd_con......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Einsam on
+        2020-04-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04-29-Hexo-deploy部署修改端口/">
+        <h2 class="post-title">
+            Hexo-deploy部署修改端口
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言因为上一篇对SSH的默认端口进行修改后，hexo deploy 无法进行部署。因此需要对hexo的配置进行修改
+
+在_config.yml里添加
+1234deploy:    type: git    repo:        server: ssh://username@ip:port/path/to/remote/git
+
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Einsam on
+        2020-04-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04-29-树莓派docker环境部署/">
+        <h2 class="post-title">
+            树莓派docker环境部署
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            docker安装
+官方脚本安装
+
+在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspbian 系统上可以使用这套脚本安装，另外可以通过 –mirror 选项使用国内源进行安装：
+123$ curl -fsSL get.docker.com -o get-docker.sh$ sudo sh get-docker.sh --mirror Aliyun# ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Einsam on
+        2020-04-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04-29-树莓派docker搭建Calibre-web/">
+        <h2 class="post-title">
+            树莓派docker搭建Calibre-web
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言之前接触过calibre-web这个项目,确实是一个非常好的管理书籍的项目,同时又不是calibre原软件一成不变的界面风格.最近接触到calibre-web有docker的版本,于是想试试将它部署到服务器上
+先是在阿里云试了试水,可是奈何1m的下载小水管,加载书籍的速度没有任何体验.
+后来看到了另一个docker镜像,有arm64的版本,于是想在自己的树莓派上部署一个个人图书馆,方便使......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Einsam on
+        2020-04-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04-28-fcitx与vim的使用优化/">
+        <h2 class="post-title">
+            fcitx与vim的使用优化
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言将vim作为写博客的编辑工具后,确实体会到许多便捷.但是vim的各种模式切换,使得我需要频繁的手动切换输入法状态.好在有前人也有类似的痛点,最终找到了几种解决方案。
+一、在~/.vimrc添加如下代码退出插入模式时，自动关闭Fcitx，反之则反
+“##### auto fcitx  ###########let g:input_toggle = 1function! Fcitx2en()......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Einsam on
+        2020-04-28
     </p>
 
 </div>
@@ -306,6 +437,10 @@ XNU Kernel
 
 <ul class="pager">
     
+    
+        <li class="next">
+            <a href="/page/2/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -335,7 +470,65 @@ XNU Kernel
                             
                         
                             
-                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            <a href="/tags/#Linux" title="Linux" rel="16">Linux</a>
+                            
+                        
+                            
+                            <a href="/tags/#Hexo" title="Hexo" rel="2">Hexo</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Docker" title="Docker" rel="3">Docker</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Arch" title="Arch" rel="4">Arch</a>
+                            
+                        
+                            
+                            <a href="/tags/#neovim" title="neovim" rel="2">neovim</a>
+                            
+                        
+                            
+                            <a href="/tags/#SSH" title="SSH" rel="2">SSH</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Raspberry" title="Raspberry" rel="2">Raspberry</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

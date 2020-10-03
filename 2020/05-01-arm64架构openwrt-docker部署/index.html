@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/logo.png">
+
+    <title>
+        
+          arm64架构openwrt-docker部署 - The Long Farewell
+        
+    </title>
+
+    <link rel="canonical" href="https://snitxmhm.github.io/2020/05-01-arm64架构openwrt-docker部署/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Long Farewell</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('post.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                        
+                          <a class="tag" href="/tags/#raspberry" title="raspberry">raspberry</a>
+                        
+                          <a class="tag" href="/tags/#openwrt" title="openwrt">openwrt</a>
+                        
+                    </div>
+                    <h1>arm64架构openwrt-docker部署</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Einsam on
+                        2020-05-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h2><p>总想把树莓派闲置的资源给利用起来,给树莓派装上64位系统的起因也是因为原先的<code>openwrt</code>突然出故障,无处寻找原因就只能重新安装。也因此发现了<code>manjaro arm64</code>版本</p>
+<h2 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h2><p>可看前面的<a href="https://snitxmhm.github.io/2020/043058749.html">文章</a></p>
+<h2 id="拉取镜像与配置"><a href="#拉取镜像与配置" class="headerlink" title="拉取镜像与配置"></a>拉取镜像与配置</h2><p><strong>1. 打开网卡混杂模式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ip link <span class="built_in">set</span> eth0 promisc on</span><br></pre></td></tr></table></figure>
+
+<p>此处的<code>eth0</code>为有线网卡接口名</p>
+<p><strong>2. 创建网络</strong></p>
+<p>（需结合实际网络情况进行修改)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d macvlan --subnet=192.168.1.0/24 --gateway=192.168.1.1 -o parent=eth0 macnet</span><br></pre></td></tr></table></figure>
+
+<p>这条命令需要根据树莓派的实际网络环境进行修改.可以通过<code>ip addr show</code>查看树莓派的ip地址来获得网段范围。<br><strong>这里一个重要提醒 先对树莓派进行静态ip固定设置</strong></p>
+<p>如树莓派ip为<code>192.168.3.200</code>，那么说明树莓派处在<code>192.168.3.x</code>网段。因此需要将上面的命令中的<code>192.168.1.0</code>与<code>192.168.1.1</code>修改为<code>192.168.3.0</code>和<code>192.168.3.1</code></p>
+<p>此时可以通过<code>docker network ls</code>命令可以看到网络<code>macnet</code>已经建立成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker network ls</span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">12debb06d4ff        bridge              bridge              <span class="built_in">local</span></span><br><span class="line">1d95814487a4        host                host                <span class="built_in">local</span></span><br><span class="line">1bd279243d7b        macnet              macvlan             <span class="built_in">local</span></span><br><span class="line">ea9faa7fb21c        none                null                <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 拉取镜像</strong></p>
+<p>由于使用的为<code>arm64</code>架构的系统，所以我们选取的镜像也需要符合</p>
+<p>这里推荐这个<a target="_blank" rel="noopener" href="https://hub.docker.com/r/buddyfly/openwrt-aarch64">buddyfly/openwrt-aarch64</a><br>网页控制台的默认密码为<code>password</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull buddyfly/openwrt-aarch64</span><br></pre></td></tr></table></figure>
+
+<p>镜像拉取加速的方法前面文章也有介绍</p>
+<p>如果为原来的树莓派官方系统这里可以使用阿里云仓库中的镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry.cn-shanghai.aliyuncs.com/suling/openwrt:latest</span><br></pre></td></tr></table></figure>
+
+<p>拉取镜像完成后，可以通过执行<code>docker images</code>命令查看现存镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p><strong>4. 开启openwrt容器</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart always --name openwrt -d --network macnet --privileged buddyfly/openwrt-aarch64:latest</span><br></pre></td></tr></table></figure>
+
+<p>对于后一个镜像的启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart always --name openwrt -d --network macnet --privileged registry.cn-shanghai.aliyuncs.com/suling/openwrt:latest /sbin/init</span><br></pre></td></tr></table></figure>
+
+<p>其中的<code>/sbin/init</code>为容器启动后执行的命令。</p>
+<p>其中:</p>
+<p><code>--restart always</code>参数表示容器退出时始终重启，保证服务的稳定性</p>
+<p><code>--name openwrt</code> 参数定义了容器名称为openwrt</p>
+<p><code>-d</code>参数定义容器运行在Daemon模式</p>
+<p><code>--networt macnet</code>参数定义将容器加入<code>macnet</code>网络</p>
+<p><code>--privileged</code>参数定义容器运行在特权模式下</p>
+<p><code>buddyfly/openwrt-aarch64:latest</code>为docker镜像名</p>
+<p>启动容器后，可以使用<code>docker ps -a</code>查看当前正在运行的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line">a26cee7cade6        openwrt:latest      <span class="string">&quot;/sbin/init&quot;</span>        3 hours ago         Up 3 hours                              openwrt</span><br></pre></td></tr></table></figure>
+
+<p>若容器运行信息<code>STATUS</code>列为<code>UP</code>状态，则说明容器运行正常。</p>
+<p><strong>5. 进入容器修改相关参数</strong></p>
+<p>根据实际网络情况进行修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it openwrt bash</span><br></pre></td></tr></table></figure>
+
+<p>其中: <code>openwrt</code>为容器名称;<code>bash</code>为进入容器后执行的命令</p>
+<p>进入openwrt命令行界面，编辑其网络配置文件<br>我们需要更改<code>Lan</code>口的配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/config/network</span><br></pre></td></tr></table></figure>
+
+<p>该镜像没有自带vim编辑器,有些失望</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">config interface &#x27;lan&#x27;</span><br><span class="line">        option type &#x27;bridge&#x27;</span><br><span class="line">        option ifname &#x27;eth0&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option ipaddr &#x27;192.168.123.100&#x27;</span><br><span class="line">        option netmask &#x27;255.255.255.0&#x27;</span><br><span class="line">        option ip6assign &#x27;60&#x27;</span><br><span class="line">        option gateway &#x27;192.168.123.1&#x27;</span><br><span class="line">        option broadcast &#x27;192.168.123.255&#x27;</span><br><span class="line">        option dns &#x27;192.168.123.1&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>所有的 192.168.123.x 需要根据树莓派所处网段修改，option gateway和option dns填写路由器的 IP，若树莓派获得的 IP 为 192.168.3.200，路由器 IP 为192.168.3.1，则需要这样修改：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">config interface &#x27;lan&#x27;</span><br><span class="line">        option type &#x27;bridge&#x27;</span><br><span class="line">        option ifname &#x27;eth0&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option ipaddr &#x27;192.168.3.254&#x27;</span><br><span class="line">        option netmask &#x27;255.255.255.0&#x27;</span><br><span class="line">        option ip6assign &#x27;60&#x27;</span><br><span class="line">        option gateway &#x27;192.168.3.1&#x27;</span><br><span class="line">        option broadcast &#x27;192.168.3.255&#x27;</span><br><span class="line">        option dns &#x27;192.168.3.1&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><code>option ipaddr</code> 项目定义了 OpenWrt 的 IP 地址，在完成网段设置后，IP最后一段可根据自己的爱好修改（前提是符合规则且不和现有已分配 IP 冲突）。</p>
+<p><strong>6. 重启网络</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/network restart</span><br></pre></td></tr></table></figure>
+
+<p><strong>7. 进入网页控制台</strong></p>
+<p>在浏览器中输入第五步中设置的<code>option ipaddr</code>的ip进入<code>Luci</code>控制面板</p>
+<p>若ip设置为<code>192.168.3.254</code>则在浏览器中输入<code>http://192.168.3.254</code></p>
+<p>用户名为<code>root</code> 默认密码为<code>password</code> 建议登录后就在系统设置项里修改管理员密码</p>
+<p>** 8. 关闭DHCP服务 **</p>
+<p>在 “网络 - 接口 - Lan - 修改” 界面中，勾选下方的 “<strong>忽略此接口（不在此接口提供 DHCP 服务）</strong>”，并“<strong>保存&amp;应用</strong>”。</p>
+<p><img src="https://file.mlapp.cn/usr/uploads/2019/10/1570370001979.png" alt="关闭DHCP"></p>
+<p><strong>9. 主路由的DHCP设置</strong></p>
+<p>进入路由器后台中，将主路由的 DHCP 的默认网关和 DNS 服务器设置为第 5 步中<code>option ipaddr</code> 项目中的 IP。<br><img src="https://file.mlapp.cn/usr/uploads/2019/10/1570370097838.png" alt="主路由DHCP"></p>
+<p><strong>10. 重新连接路由器</strong></p>
+<p>完成以上操作后，断开设备（如手机，电脑）与路由器的连接，重新连接路由器，连接路由器的设备将获取到我们设置到的 IP。</p>
+<h2 id="其他问题修复"><a href="#其他问题修复" class="headerlink" title="其他问题修复"></a>其他问题修复</h2><p>由于我的路由器无法更改dhcp的设置，因此我从第8步开始改用将openwrt设为旁关路由，用静态ip连接openwrt获取地址分配。</p>
+<p>从第八步开始,lan口设置中，关闭ipv6的各项设置,关闭动态dhcp,启用强制分配ip地址，即使查找到另一个服务器，也使用openwrt分配地址</p>
+<p>同时我又遇到了开启<code>passwall</code>后无法访问国内网站的问题</p>
+<p>解决方案为</p>
+<p>在防火墙中添加自定义规则</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -I POSTROUTING -j MASQUERADE</span><br></pre></td></tr></table></figure>
+
+<p>重启防火墙<br>这样之后还是不行,我又在网络lan口设置中将桥接模式取消</p>
+<p>问题解决</p>
+<p><strong>手动指定网关</strong></p>
+<p>如果路由器固件不支持自定义 DHCP 服务的网关及 DNS 地址（常见于路由器官方固件），或者只希望局域网下的个别设备接入旁路网关时，须在接入设备上做以下配置：</p>
+<p>安卓:<br><img src="https://file.mlapp.cn/usr/uploads/2019/10/1570424885014.png" alt="安卓"><br>需要在安卓的 WIFI 设置内将 IP 获取方式更改为“静态”或“手动”，其中：</p>
+<p>“IP 地址”项目需要更改为网段内不冲突的地址；</p>
+<p>“网关”或“路由器”项目需要更改为旁路网关 IP 地址；</p>
+<p>“前缀长度”项目填写“24”；</p>
+<p>“DNS”项目需要更改为旁路网关 IP 地址（两个 DNS 输入框填写一个就可以）。</p>
+<p>完成并提交设置后，关闭 WIFI 开关再打开，连接设置的 WIFI 热点，若当前网络参数为设定值，则证明设置成功。</p>
+<p>windows:<br><img src="https://file.mlapp.cn/usr/uploads/2019/10/1570425536078.png" alt="windows"></p>
+<p>对于linux用户,我想这个问题不难解决</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/08-28-Archlinux-installation/" data-toggle="tooltip" data-placement="top" title="Archlinux-installation">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/05-01-Linux硬盘的自动挂载/" data-toggle="tooltip" data-placement="top" title="Linux硬盘的自动挂载">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                        
+                          <a class="tag" href="/tags/#raspberry" title="raspberry">raspberry</a>
+                        
+                          <a class="tag" href="/tags/#openwrt" title="openwrt">openwrt</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://snitxmhm.github.io/2020/05-01-arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/";
+    var disqus_url = "https://snitxmhm.github.io/2020/05-01-arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; The Long Farewell 2020 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://snitxmhm.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

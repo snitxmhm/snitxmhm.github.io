@@ -13,11 +13,11 @@
 
     <title>
         
-          一次解决所有代理问题 - The Long Farewell
+          Arch系linux静态ip设置与固定 - The Long Farewell
         
     </title>
 
-    <link rel="canonical" href="https://snitxmhm.github.io/2020/03-29-一次解决所有代理问题/">
+    <link rel="canonical" href="https://snitxmhm.github.io/2020/04-27-Arch系linux静态ip设置与固定/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -173,16 +173,14 @@
                         
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#terminal" title="terminal">terminal</a>
-                        
-                          <a class="tag" href="/tags/#proxy" title="proxy">proxy</a>
+                          <a class="tag" href="/tags/#Arch" title="Arch">Arch</a>
                         
                     </div>
-                    <h1>一次解决所有代理问题</h1>
+                    <h1>Arch系linux静态ip设置与固定</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Einsam on
-                        2020-03-29
+                        2020-04-27
                     </span>
                 </div>
             </div>
@@ -201,43 +199,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="Linux-让终端走代理的集中方法"><a href="#Linux-让终端走代理的集中方法" class="headerlink" title="Linux 让终端走代理的集中方法"></a>Linux 让终端走代理的集中方法</h2><blockquote>
-<p>通过让终端走代理的方式来加快gitclone的速度。</p>
-</blockquote>
-<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><blockquote>
-<p>认识代理的方式：代理是通过客户端与服务端通信，传输服务端能够访问到的资源文件，再由服务端客户端通信返回给客户端，从而间接访问服务端能够访问的资源</p>
-</blockquote>
-<p>首先确定自己服务端代理的通讯协议。 socks，http，https</p>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一:"></a>方法一:</h3><p>直接在终端中运行:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://proxyAddress:port</span><br></pre></td></tr></table></figure>
-<p>这里的proxyAddress替换为代理服务器的ip，如果客户端支持本地监听就替换为127.0.0.1</p>
-<p>port端口替换为代理端口</p>
-<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples:"></a>Examples:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1080</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:1080</span><br><span class="line"><span class="built_in">export</span> http_proxy=socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<p>这种方法的好处是只对当前打开的终端生效，当终端关闭代理就取消了</p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二:"></a>方法二:</h3><p>如果有永久保存代理服务器的需求</p>
-<p>把代理服务器地址写进shell配置文件 .bashrc或者.zshrc</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=&quot;http://localhost:port&quot;</span><br><span class="line">export https_proxy=&quot;http://localhost:prot&quot;</span><br></pre></td></tr></table></figure>
-<p>可将冒号内的http替换为socks5</p>
-<p>或者干脆</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ALL_PROXY=socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<p>最后执行命令使之生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三:"></a>方法三:</h3><p>Proxychains软件解决<br>Arch安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S proxychains</span><br></pre></td></tr></table></figure>
-<p>安装完成后编辑<code>/etc/proxychains.conf</code><br>注释掉proxy_dns这行，防止DNS污染</p>
-<p>在文件最末添加</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socks5 127.0.0.1 1080</span><br></pre></td></tr></table></figure>
-<p>以后每次需要执行需要代理的命令时，就在命令前添加proxychains</p>
-<h3 id="方法四："><a href="#方法四：" class="headerlink" title="方法四："></a>方法四：</h3><p>修改对应工具的代理配置</p>
-<p>例如git</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#39;socks:&#x2F;&#x2F;127.0.0.1:1080&#39;</span><br><span class="line">git config --global https.proxy &#39;socks5:127.0.0.1:1080&#39;</span><br></pre></td></tr></table></figure>
-<p>取消代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.prox</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
-<p>以上解决的是git使用http协议的代理</p>
-<p>ssh代理与之不同</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/config</span><br><span class="line"></span><br><span class="line">#添加</span><br><span class="line"># 这里必须是 github.com，因为这个跟我们 clone 代码时的链接有关</span><br><span class="line"> Host github.com</span><br><span class="line">   # 如果用默认端口，这里是 github.com，如果想用443端口，这里就是 ssh.github.com 详见 https://help.github.com/articles/using-ssh-over-the-https-port/</span><br><span class="line">   HostName github.com</span><br><span class="line">#   User git</span><br><span class="line">   # 如果是 HTTP 代理，把下面这行取消注释，并把 proxyport 改成自己的 http 代理的端口</span><br><span class="line">   # ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=20171</span><br><span class="line">   # 如果是 socks5 代理，则把下面这行取消注释，并把 6666 改成自己 socks5 代理的端口</span><br><span class="line">   # ProxyCommand nc -v -x 127.0.0.1:20170 %h %p</span><br></pre></td></tr></table></figure>
+                <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">在arch系统的安装过程中,我因为个人的网络环境而有设置静态ip的需求，因而没有选用dhcpcd服务来获取动态ip</span><br><span class="line"></span><br><span class="line">在此记录设置静态ip过程中的思路与一些工具的使用，还有永久固定静态ip的方法</span><br><span class="line"></span><br><span class="line">前置知识</span><br><span class="line">排查网络连接问题</span><br><span class="line">1. 网络接口网卡设备可见且已经启用 </span><br><span class="line">    1. ip link</span><br><span class="line">    2. ip link <span class="built_in">set</span> 网卡名 up</span><br><span class="line">2. 已经连接到网络. 网线已经接好 或者已经连接到无线局域网</span><br><span class="line">3. 网络接口设备拥有一个ip地址</span><br><span class="line">4. 路由表设置正确 </span><br><span class="line">6. 可以ping通一个本地ip地址 例如默认网关</span><br><span class="line">7. 可以ping通一个公网ip地址 例如8.8.8.8 谷歌的DNS服务器</span><br><span class="line">8. 检查是否能解析域名 例如baidu.com</span><br><span class="line">Ping</span><br><span class="line">ping用于测试是否可以连接到某个主机</span><br><span class="line"></span><br><span class="line">$ ping www.example.com</span><br><span class="line">PING www.example.com (93.184.216.34): 56(84) data bytes</span><br><span class="line">64 bytes from 93.184.216.34: icmp_seq=0 ttl=56 time=11.632 ms</span><br><span class="line">64 bytes from 93.184.216.34: icmp_seq=1 ttl=56 time=11.726 ms</span><br><span class="line">64 bytes from 93.184.216.34: icmp_seq=2 ttl=56 time=10.683 ms</span><br><span class="line">...</span><br><span class="line">如果没有收到回应，原因可能与你的默认网关配置或者你的网络接入服务商（ISP）有关。</span><br><span class="line"></span><br><span class="line">iproute2使用</span><br><span class="line">iproute2 是 base 元包 的依赖，提供 ip 命令行接口，用于管理 网络接口，IP 地址 和 路由表。注意使用 ip 进行的配置会在重启后丢失。要进行永久配置，可以使用 网络管理器 或通过脚本和 systemd 单元 使 ip 命令自动化。同时需要注意的是 ip 命令通常能够缩写，为了清楚起见，本文对其进行了详细说明。</span><br><span class="line"></span><br><span class="line">网络接口</span><br><span class="line">默认情况下， udev 使用 可预测的网络接口名称 分配给你的网络接口，该名称以 en (有线/以太网) ，wl (无线/WLAN) 或 ww (WWAN) 。</span><br><span class="line"></span><br><span class="line">列出网络接口</span><br><span class="line">有线和无线接口名称都可以通过 ls /sys/class/net 或 ip link 找到。要注意的是 lo 是 Loop 设备 ，不被用于建立网络连接。</span><br><span class="line"></span><br><span class="line">启用禁用网络接口</span><br><span class="line">ip link <span class="built_in">set</span> <span class="string">&#x27;interface&#x27;</span>网络接口名 up|down</span><br><span class="line">启用与禁用网络接口</span><br><span class="line"></span><br><span class="line">列出IP地址</span><br><span class="line">ip address show</span><br><span class="line">将IP地址添加到接口</span><br><span class="line">ip address add address地址/prefix_len子网掩码长度 broadcast 广播范围 + dev interface网络接口</span><br><span class="line">+ 是使 ip 从 IP 地址和子网掩码派生 broadcast address 的特殊符号</span><br><span class="line"></span><br><span class="line">例如ip address add 192.168.3.18/24 broadcast 192.168.3.255 dev wlo1</span><br><span class="line">或ip address add 192.168.3.18/24 broadcast + dev wlo1</span><br><span class="line">address可缩写为addr</span><br><span class="line">实际操作中省略广播貌似可行</span><br><span class="line"></span><br><span class="line">将IP地址从接口中删除</span><br><span class="line">ip address del address/prefix_len dev interface</span><br><span class="line">删除某个特定接口的地址</span><br><span class="line"></span><br><span class="line">ip address flush dev interface</span><br><span class="line">列出路由表</span><br><span class="line">列出IPV4路由</span><br><span class="line"></span><br><span class="line">ip route show</span><br><span class="line">列出IPV6路由</span><br><span class="line"></span><br><span class="line">ip -6 route</span><br><span class="line">添加路由表,即网关</span><br><span class="line">ip route add PREFIX via address dev interface</span><br><span class="line">一般默认PREFIX为default</span><br><span class="line">例如</span><br><span class="line"></span><br><span class="line">ip route add default via 192.168.3.1 dev wlo1</span><br><span class="line">网关ip一般为网段.1或网段.254</span><br><span class="line"></span><br><span class="line">删除路由表</span><br><span class="line">ip route del PREFIX via address dev interface</span><br><span class="line">删除某接口所有路由表</span><br><span class="line"></span><br><span class="line">ip route flush dev wlo1</span><br><span class="line">现在我们正式开始设置静态ip</span><br><span class="line"></span><br><span class="line">手动设置静态IP地址</span><br><span class="line">ip address add 192.168.3.18/24 broadcast 192.168.3.255 dev wlo1</span><br><span class="line"></span><br><span class="line">ip route add defalut via 192.168.3.254 dev wlo1</span><br><span class="line">编辑/etc/resolv.conf</span><br><span class="line">添加DNS服务器</span><br><span class="line"></span><br><span class="line">nameserver 192.168.3.254</span><br><span class="line">也可改为一些公共dns</span><br><span class="line"></span><br><span class="line">永久固定ip</span><br><span class="line">每次重启都得手动执行命令就显得有些麻烦。因此通过系统服务与脚本来固定ip地址</span><br><span class="line"></span><br><span class="line">首先先为systemd服务创建一个网络设定的配置</span><br><span class="line">以网络接口设备名取代以下的interface</span><br><span class="line"></span><br><span class="line">vim /etc/conf.d/network@interface</span><br><span class="line">--------------------------------</span><br><span class="line">address=192.168.3.18</span><br><span class="line">netmask=24</span><br><span class="line">broadcast=192.168.3.255</span><br><span class="line">gateway=192.168.3.254</span><br><span class="line">具体ip与网关根据个人设置</span><br><span class="line"></span><br><span class="line">建立systemd unit档案</span><br><span class="line"></span><br><span class="line">vim /etc/systemd/system/network@.service</span><br><span class="line">---------------------------------------</span><br><span class="line">[Unit]</span><br><span class="line">Description=Network connectivity (%i)</span><br><span class="line">Wants=network.target</span><br><span class="line">Before=network.target</span><br><span class="line">BindsTo=sys-subsystem-net-devices-%i.device</span><br><span class="line">After=sys-subsystem-net-devices-%i.device</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">EnvironmentFile=/etc/conf.d/network@%i</span><br><span class="line"></span><br><span class="line">ExecStart=/usr/bin/ip link <span class="built_in">set</span> dev %i up</span><br><span class="line">ExecStart=/usr/bin/ip addr add <span class="variable">$&#123;address&#125;</span>/<span class="variable">$&#123;netmask&#125;</span> broadcast <span class="variable">$&#123;broadcast&#125;</span> dev %i</span><br><span class="line">ExecStart=/usr/bin/sh -c <span class="string">&#x27;test -n $&#123;gateway&#125; &amp;&amp; /usr/bin/ip route add default via $&#123;gateway&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">ExecStop=/usr/bin/ip addr flush dev %i</span><br><span class="line">ExecStop=/usr/bin/ip link <span class="built_in">set</span> dev %i down</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">启用该unit并将其启用，加入网络接口名称</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> network@网络接口.service</span><br><span class="line">systemctl start network@网络接口.service</span><br><span class="line">至此结束</span><br></pre></td></tr></table></figure>
 
-<p>以上至此</p>
+
 
 
                 <hr>
@@ -247,12 +211,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/03-29-git服务器添加公钥后仍需要密码/" data-toggle="tooltip" data-placement="top" title="git服务器添加公钥后仍需要密码">&larr; Previous Post</a>
+                            <a href="/2020/04-27-Linux下最佳显卡解决方案/" data-toggle="tooltip" data-placement="top" title="Linux下最佳显卡解决方案">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/03-26-linxu下opencv环境搭建/" data-toggle="tooltip" data-placement="top" title="linxu下opencv环境搭建">Next Post &rarr;</a>
+                            <a href="/2020/04-27-ArchLinux安装全记录-未完/" data-toggle="tooltip" data-placement="top" title="ArchLinux安装全记录-未完">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -287,9 +251,7 @@
                        
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#terminal" title="terminal">terminal</a>
-                        
-                          <a class="tag" href="/tags/#proxy" title="proxy">proxy</a>
+                          <a class="tag" href="/tags/#Arch" title="Arch">Arch</a>
                         
                     </div>
                 </section>
@@ -329,8 +291,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://snitxmhm.github.io/2020/03-29-%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/";
-    var disqus_url = "https://snitxmhm.github.io/2020/03-29-%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/";
+    var disqus_identifier = "https://snitxmhm.github.io/2020/04-27-Arch%E7%B3%BBlinux%E9%9D%99%E6%80%81ip%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%9B%BA%E5%AE%9A/";
+    var disqus_url = "https://snitxmhm.github.io/2020/04-27-Arch%E7%B3%BBlinux%E9%9D%99%E6%80%81ip%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%9B%BA%E5%AE%9A/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

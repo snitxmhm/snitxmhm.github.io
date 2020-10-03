@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/logo.png">
+
+    <title>
+        
+          ArchLinux安装全记录-未完 - The Long Farewell
+        
+    </title>
+
+    <link rel="canonical" href="https://snitxmhm.github.io/2020/04-27-ArchLinux安装全记录-未完/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Long Farewell</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('post.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Arch" title="Arch">Arch</a>
+                        
+                    </div>
+                    <h1>ArchLinux安装全记录-未完</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Einsam on
+                        2020-04-27
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>尽管许多事情压迫的自己十分痛苦，但是爱折腾的心还是更胜一筹，只有在折腾这些乱七八糟的东西的时候才能获得片刻的宁静，能够专心的做一件事情。<br>使用<code>arch</code>系衍生发行版<code>manjaro</code>已经有蛮长的几个月时间，其实心里一直对那神奇的<code>arch</code>十分好奇。因为在使用manjaro的过程中从arch的论坛和wiki中都获得了很多的信息。但是还是碍于道听途说的安装过程的困难让我有些害怕，因为电脑上已经装了win和黑苹果，怕半吊子的对引导的了解将整台电脑都折腾坏。毕竟当时安装黑苹果时，引导问题就吃了一个大亏，将电脑中所有的资料都付之一炬。<br>所以还是打算在manjaro上多摸爬滚打一段时间。<br>前几天，折腾之心难以平静，又很是想体验一下arch能否有更为流畅爽快的体验，因此照着教程与wiki就先在虚拟机里试了几次手。感觉搞明白了一些具体流程之后，又向别人确认了引导问题应该不会出错，于是实体机上的<code>折腾</code>开始了。</p>
+<p>在此记录折腾的全过程，留作以后的参考</p>
+<hr>
+<h2 id="安装前的准备"><a href="#安装前的准备" class="headerlink" title="安装前的准备"></a>安装前的准备</h2><h3 id="验证签名"><a href="#验证签名" class="headerlink" title="验证签名"></a>验证签名</h3><p>安装文件可以从<a target="_blank" rel="noopener" href="https://www.archlinux.org/download/">download</a>页面获取,同时获取<code>GnuPG</code>签名</p>
+<p>在一台已经安装 GnuPG 的系统上，通过下载 PGP 签名 (under Checksums) 到 ISO 文件所在的路径，可以通过以下方式验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig</span><br></pre></td></tr></table></figure>
+
+<p>另外在另一台已经安装<code>Arch Linux</code>的计算机上可通过以下方式验证<br>manjaro也可以</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pacman-key -v archlinux-version-x86_64.iso.sig</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动到live环境"><a href="#启动到live环境" class="headerlink" title="启动到live环境"></a>启动到live环境</h2><p>windows下可以用rufus刻录启动盘</p>
+<hr>
+<p>linux用<code>dd</code>命令<br>警告: 这种方法会删除 /dev/sdx 上的所有数据且不可逆。要在使用 Arch ISO 之后释放空间，还原 USB 为原始状态，需要以 root 权限执行wipefs –all /dev/sdx 命令删除 iso9660 文件系统标记，然后再 重新分区 和 重新格式化 USB。<br>用<code>lsblk</code>找到U盘并确保<code>没有</code>挂载<br>用U盘替换 <code>/dev/sdx</code>，如 <code>/dev/sdb</code>。（不要加上数字，也就是说，不要键入 <code>/dev/sdb1</code> 之类的东西)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd bs-4N <span class="keyword">if</span>=/path/to/archlinux.iso of=/dev/sdx status=progress &amp;&amp; sync</span><br></pre></td></tr></table></figure>
+
+<p>请等待 sync 完成，所有数据都写入之后再拔掉 U 盘。</p>
+<hr>
+<p>其实也可在<code>manjaro</code>下挂载最新的 Arch Linux 安装介质并 chroot 是可能的。这种方法为当前系统提供了可运作的 Arch Linux 安装程序而无需另外准备。</p>
+<p>注意: 开始前，确保最近版本的 squashfs 已安装。否则会出现诸如 FATAL ERROR aborting: uncompress_inode_table: failed to read block的错误信息。</p>
+<p>依据构架的不同，根镜像能在镜像站的 arch/x86_64/ 或 arch/i686/ 目录下找到。squashfs 格式无法编辑，因此需要解压出根镜像并挂载。</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/iso">清华源下载地址</a> /arch/x86_64目录下<br>解压运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unsquashfs -d /squashfs=root root-image.fs.sfs</span><br></pre></td></tr></table></figure>
+
+<p>以<code>loop</code>挂载根镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir /arch</span><br><span class="line">mount -o loop /squashfs-root/root-image.fs /arch</span><br><span class="line">chroot`前需设置挂载点并为网络连接复制`resolv.conf</span><br><span class="line">mount -t proc none /arch/proc</span><br><span class="line">mount -t sysfs none /arch/sys</span><br><span class="line">mount -o <span class="built_in">bind</span> /dev /arch/dev</span><br><span class="line">mount -o <span class="built_in">bind</span> /dev/pts /arch/dev/pts <span class="comment"># pacman 所需（用于签名检查）</span></span><br><span class="line">cp -L /etc/resolv.conf /arch/etc <span class="comment"># 网络连接所需</span></span><br></pre></td></tr></table></figure>
+
+<p>准备完毕，chroot进入新系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chroot /arch bash</span><br></pre></td></tr></table></figure>
+
+<p>使用 chroot 环境<br>初始化 pacman 密匙环<br>开始安装前，需要设置 pacman 密匙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pacman-key --init</span><br><span class="line">pacman-key --populate archlinux</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>此处继续liveCD的u盘安装</p>
+<p>首先确认引导类型，我以EFI的方式引导</p>
+<p>开机以U盘启动</p>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>进入选择界面后选择<code>Boot Arch Linux</code>进入<br>硬件检测后进入系统</p>
+<h3 id="终端字体"><a href="#终端字体" class="headerlink" title="终端字体"></a>终端字体</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setfonts /usr/share/kbd/consolefonts/LatGrkCyr-12x22.psfu.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="键盘布局修改"><a href="#键盘布局修改" class="headerlink" title="键盘布局修改"></a>键盘布局修改</h3><p><em>控制台键盘布局</em>默认为<code>us</code>美式键盘映射。 列出所有可用键盘布局，可使用:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /usr/share/kbd/keymaps/**/*.map.gz</span><br></pre></td></tr></table></figure>
+
+<p>如果您想要更改键盘布局，可以将一致的文件名添加进 loadkeys(1)，但请省略路径和扩展名。比如，要添加 German 键盘布局：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadkeys de-latin1</span><br></pre></td></tr></table></figure>
+
+<p>此处我只是想交换键盘的<code>CapsLock</code>与<code>Ese</code><br>可新建<code>keyloads.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim keyloads.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加内容</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keycode 1 = Caps_Lock</span><br><span class="line">keycode 58 = Escape</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadkeys keyloads.conf</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证启动模式"><a href="#验证启动模式" class="headerlink" title="验证启动模式"></a>验证启动模式</h3><p>如果以在 UEFI 主板上启用 UEFI 模式，Archiso 将会使用 systemd-boot 来 启动 Arch Linux。可以列出 efivars 目录以验证启动模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /sys/firmware/efi/efivars</span><br></pre></td></tr></table></figure>
+
+<p>如果目录不存在，系统可能以 BIOS 或 CSM 模式启动，详见您的主板手册。</p>
+<h3 id="联网"><a href="#联网" class="headerlink" title="联网"></a>联网</h3><p>用下面步骤设置网络</p>
+<p>1.确保系统已经启用了 网络接口，用 <code>ip-link</code> 检查:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link</span><br></pre></td></tr></table></figure>
+
+<p>如果有线网卡或无线网卡并未启用,则执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link <span class="built_in">set</span> 网卡名 up</span><br></pre></td></tr></table></figure>
+
+<p>2.连接到网络，连接<code>网线</code>或<code>无线网络</code></p>
+<ol>
+<li><p>网线</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systecmtl start dhcpcd.service</span><br></pre></td></tr></table></figure>
+
+<p>这样就已经联网了</p>
+</li>
+<li><p>无线网络</p>
+<p>扫描可用的<code>wifi</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwlist 无线网卡名 scan | grep EESID</span><br></pre></td></tr></table></figure>
+
+<p><code>wpa_passphrase</code>生成<code>wpa_supplicant</code>所需的最小配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpa_passphrase wifi名 密码 &gt; internet.conf</span><br></pre></td></tr></table></figure>
+
+<p><code>wpa_supplicant</code>连接上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpa_supplicant -c internet.conf -i 网卡名 &amp;</span><br></pre></td></tr></table></figure>
+
+<p><code>&amp;</code>表示后台运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start dhcpcd.service <span class="comment"># 获得动态ip</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>有静态ip设置需求的话,请看另一篇<a href="https://snitxmhm.github.io/2020/042829861.html">静态ip的设置方法</a></li>
+</ol>
+</li>
+<li><p>用<code>ping</code>检查网络连接</p>
+</li>
+</ol>
+<h3 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl <span class="built_in">set</span>-ntp <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="建立硬盘分区"><a href="#建立硬盘分区" class="headerlink" title="建立硬盘分区"></a>建立硬盘分区</h3><p>硬盘如果被识别到，就会被分配为一个<code>块设备</code>，如<code>/dev/sda</code>.可使用<code>lsblk</code>或<code>fdisk</code>查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+
+<p>其中以<code>rom</code>,<code>loop</code>,<code>airoot</code>结束的可以忽略<br>对于系统安装,以下分区是必要的</p>
+<ul>
+<li>一个根分区(挂载在根目录)<code>/</code>;</li>
+<li>如果<code>UEFI</code>模式被启用，还需要一个<code>EFI系统分区</code><br><img src="https://cdn.monsterx.cn/post.archlayout.png.webp" alt="分区示例"><br>这里先介绍<code>swap</code>的作用<br>交换分区相当与虚拟内存,可以帮助运行超出内存上限的部分。在电脑休眠时，所有的内存也是储存至虚拟内存中。<br>因此交换分区的大小可以设置为实际内存的大小</li>
+</ul>
+<p>事先从硬盘中独立分出一分区,大小视个人情况,当然越大越好，至少30G左右<br><code>fdisk -l</code>查看分区<br>根据我的情况，我使用GPT的分区方案<br>这里假设我分出的分区块设备为<code>/dev/sda9</code></p>
+<p>现在正式开始分区,可使用<code>fdisk</code>或<code>cfdisk</code>工具<br>这里使用<code>fdisk</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sda9</span><br><span class="line">按g建立gpt分区表</span><br><span class="line">n创建分区 分区序号为1</span><br></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/04-27-Arch系linux静态ip设置与固定/" data-toggle="tooltip" data-placement="top" title="Arch系linux静态ip设置与固定">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/04-18-LNMP环境配置-Ubuntu18-04/" data-toggle="tooltip" data-placement="top" title="LNMP环境配置-Ubuntu18.04">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Arch" title="Arch">Arch</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://snitxmhm.github.io/2020/04-27-ArchLinux%E5%AE%89%E8%A3%85%E5%85%A8%E8%AE%B0%E5%BD%95-%E6%9C%AA%E5%AE%8C/";
+    var disqus_url = "https://snitxmhm.github.io/2020/04-27-ArchLinux%E5%AE%89%E8%A3%85%E5%85%A8%E8%AE%B0%E5%BD%95-%E6%9C%AA%E5%AE%8C/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/snitxmhm">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; The Long Farewell 2020 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://snitxmhm.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://snitxmhm.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

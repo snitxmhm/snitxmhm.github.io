@@ -13,11 +13,11 @@
 
     <title>
         
-          一次解决所有代理问题 - The Long Farewell
+          Linux下最佳显卡解决方案 - The Long Farewell
         
     </title>
 
-    <link rel="canonical" href="https://snitxmhm.github.io/2020/03-29-一次解决所有代理问题/">
+    <link rel="canonical" href="https://snitxmhm.github.io/2020/04-27-Linux下最佳显卡解决方案/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -173,16 +173,18 @@
                         
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#terminal" title="terminal">terminal</a>
+                          <a class="tag" href="/tags/#Arch" title="Arch">Arch</a>
                         
-                          <a class="tag" href="/tags/#proxy" title="proxy">proxy</a>
+                          <a class="tag" href="/tags/#optimius-manager" title="optimius-manager">optimius-manager</a>
+                        
+                          <a class="tag" href="/tags/#显卡" title="显卡">显卡</a>
                         
                     </div>
-                    <h1>一次解决所有代理问题</h1>
+                    <h1>Linux下最佳显卡解决方案</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Einsam on
-                        2020-03-29
+                        2020-04-27
                     </span>
                 </div>
             </div>
@@ -201,43 +203,54 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="Linux-让终端走代理的集中方法"><a href="#Linux-让终端走代理的集中方法" class="headerlink" title="Linux 让终端走代理的集中方法"></a>Linux 让终端走代理的集中方法</h2><blockquote>
-<p>通过让终端走代理的方式来加快gitclone的速度。</p>
-</blockquote>
-<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><blockquote>
-<p>认识代理的方式：代理是通过客户端与服务端通信，传输服务端能够访问到的资源文件，再由服务端客户端通信返回给客户端，从而间接访问服务端能够访问的资源</p>
-</blockquote>
-<p>首先确定自己服务端代理的通讯协议。 socks，http，https</p>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一:"></a>方法一:</h3><p>直接在终端中运行:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://proxyAddress:port</span><br></pre></td></tr></table></figure>
-<p>这里的proxyAddress替换为代理服务器的ip，如果客户端支持本地监听就替换为127.0.0.1</p>
-<p>port端口替换为代理端口</p>
-<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples:"></a>Examples:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1080</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:1080</span><br><span class="line"><span class="built_in">export</span> http_proxy=socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<p>这种方法的好处是只对当前打开的终端生效，当终端关闭代理就取消了</p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二:"></a>方法二:</h3><p>如果有永久保存代理服务器的需求</p>
-<p>把代理服务器地址写进shell配置文件 .bashrc或者.zshrc</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=&quot;http://localhost:port&quot;</span><br><span class="line">export https_proxy=&quot;http://localhost:prot&quot;</span><br></pre></td></tr></table></figure>
-<p>可将冒号内的http替换为socks5</p>
-<p>或者干脆</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ALL_PROXY=socks5://127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<p>最后执行命令使之生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三:"></a>方法三:</h3><p>Proxychains软件解决<br>Arch安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S proxychains</span><br></pre></td></tr></table></figure>
-<p>安装完成后编辑<code>/etc/proxychains.conf</code><br>注释掉proxy_dns这行，防止DNS污染</p>
-<p>在文件最末添加</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socks5 127.0.0.1 1080</span><br></pre></td></tr></table></figure>
-<p>以后每次需要执行需要代理的命令时，就在命令前添加proxychains</p>
-<h3 id="方法四："><a href="#方法四：" class="headerlink" title="方法四："></a>方法四：</h3><p>修改对应工具的代理配置</p>
-<p>例如git</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#39;socks:&#x2F;&#x2F;127.0.0.1:1080&#39;</span><br><span class="line">git config --global https.proxy &#39;socks5:127.0.0.1:1080&#39;</span><br></pre></td></tr></table></figure>
-<p>取消代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.prox</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
-<p>以上解决的是git使用http协议的代理</p>
-<p>ssh代理与之不同</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/config</span><br><span class="line"></span><br><span class="line">#添加</span><br><span class="line"># 这里必须是 github.com，因为这个跟我们 clone 代码时的链接有关</span><br><span class="line"> Host github.com</span><br><span class="line">   # 如果用默认端口，这里是 github.com，如果想用443端口，这里就是 ssh.github.com 详见 https://help.github.com/articles/using-ssh-over-the-https-port/</span><br><span class="line">   HostName github.com</span><br><span class="line">#   User git</span><br><span class="line">   # 如果是 HTTP 代理，把下面这行取消注释，并把 proxyport 改成自己的 http 代理的端口</span><br><span class="line">   # ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=20171</span><br><span class="line">   # 如果是 socks5 代理，则把下面这行取消注释，并把 6666 改成自己 socks5 代理的端口</span><br><span class="line">   # ProxyCommand nc -v -x 127.0.0.1:20170 %h %p</span><br></pre></td></tr></table></figure>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>bumblebee 的 optirun 的兼容性问题； primusrun 关垂直同步的画面撕裂，开垂直同步的输入延迟；直接使用 NVIDIA 的耗电等一系列双显卡之痛之后，发现 optimus-manager 十分适合。可以设置开机默认使用 Intel 还是 Nvidia ，可以随时在这两者之间切换。</p>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装前须知: <code>optimus-manager</code> 上游直接支持的<em>Display Manager</em>为 <code>sddm</code> 、 <code>lightdm</code> 和 <code>gdm</code> ，其他 DM 要用的话需要额外配置 Xsetup 脚本，这里不介绍。</p>
+<p>可以通过<code>AUR</code>安装<a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/optimus-manager/">optimus-manager</a></p>
+<p>也可以通过<code>archlinxucn</code>源直接安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -Sy optimus-manager</span><br></pre></td></tr></table></figure>
 
-<p>以上至此</p>
+<p>安装完成后开启服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">enable</span> optimus-manager.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>首先确保<code>/etc/X11/xorg.conf</code>和<code>/ext/X11/xorg.conf.d</code>下没有其他显卡与显示相关的配置,如果有的话可以直接删除,因为<code>optimus-manager</code>会自动生成显卡配置<code>/etc/X11/xorg.conf.d/10-optimus-manager.conf</code></p>
+<p>如果已经安装<code>bumblebee</code>,请执行以下命令关闭<code>bumblebeed</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">disable</span> bumblebeed</span><br></pre></td></tr></table></figure>
+
+<p>检查<code>/etc/modules-load.d/</code>以确保<code>bbswitch</code>模块不要在开机时被加载</p>
+<p>最后安装<code>nvidia</code>闭源驱动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S nvidia-utils</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置-optimus-maager"><a href="#配置-optimus-maager" class="headerlink" title="配置 optimus-maager"></a>配置 optimus-maager</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir -p /etc/optimus-manager</span><br></pre></td></tr></table></figure>
+
+<p>将<code>optimus-manager</code>默认配置复制至<code>/etc/optimus-manager</code>进行另外配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo cp /usr/share/optimus-manager.conf /etc/optimus-manager/optimus-manager.conf</span><br><span class="line">$ sudo vim /etc/optimus-manager/optimus-manager.conf</span><br></pre></td></tr></table></figure>
+
+<p>各选项配置</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">[optimus]</span><br><span class="line"># 切换方式，可能值： nouveau, bbswitch, none</span><br><span class="line"># 如果选择 none，Nvidia在你使用 Intel 的时候将一直处于通电状态</span><br><span class="line"># 如果使用 bbswitch, 在你使用 Intel 的时候将无法使用 Nvidia 上的</span><br><span class="line"># 接口输出到外接显示器。</span><br><span class="line"># 使用 bbswitch 必须安装 bbswitch 或者 bbswitch-dkms。</span><br><span class="line"># bbswitch 暂时还不支持 10系以上显卡 (真的不支持？还是 ACPI 锁死问题呢？)</span><br><span class="line">switching=nouveau</span><br><span class="line"></span><br><span class="line"># 在 Intel 模式下开启 PCI 电源管理</span><br><span class="line"># 如果不开的话会你会发现耗电量会比较大</span><br><span class="line"># 如果已经使用了 bbswitch 这个选项会被忽略</span><br><span class="line">pci_power_control=yes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[intel]</span><br><span class="line"># 使用哪一个 Intel 驱动</span><br><span class="line"># 可能值: modesetting, intel</span><br><span class="line">driver=modesetting</span><br><span class="line"></span><br><span class="line"># 加速模式</span><br><span class="line"># intel 驱动专属，对modesetting无效</span><br><span class="line"># 可能值 :  sna, xna</span><br><span class="line"># 留空以使用默认值</span><br><span class="line">accel=</span><br><span class="line"></span><br><span class="line"># 开启 TearFree 选项</span><br><span class="line"># intel驱动的选项, 对modesetting无效</span><br><span class="line"># 可能值: yes, no</span><br><span class="line"># 留空以使用默认值</span><br><span class="line">tearfree=</span><br><span class="line"></span><br><span class="line"># DRI 版本. 可能值 : 2, 3</span><br><span class="line">DRI=3</span><br><span class="line"></span><br><span class="line"># 是否对 nouveau 开启 modesetting.</span><br><span class="line"># 对 intel 驱动无效</span><br><span class="line"># 如果你使用 bbswitch 作为切换方式，这个选项会被忽略</span><br><span class="line">modeset=yes</span><br><span class="line"></span><br><span class="line">[nvidia]</span><br><span class="line"># DRI版本，可能值： 2, 3</span><br><span class="line">DRI=3</span><br><span class="line"></span><br><span class="line"># 是否开启 modesetting，如果要使用 PRIME Synchronization 来避免</span><br><span class="line"># 画面撕裂的话，必须开启</span><br><span class="line">modeset=yes</span><br><span class="line"></span><br><span class="line"># 是否开启 NVIDIA 驱动的 NVreg_UsePageAttributeTable 选项</span><br><span class="line"># 推荐开启，否则可能会导致 CPU 低性能。</span><br><span class="line">PAT=yes</span><br><span class="line"></span><br><span class="line"># DPI 值. 帮你设置登录管理器的 DPI</span><br><span class="line"># 原理是启动登录管理器的时候执行：</span><br><span class="line"># xrandr --dpi </span><br><span class="line"># 留空以使用默认值</span><br><span class="line">DPI=</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Nvidia 专有选项，选项之间以逗号分隔</span><br><span class="line"># 支持的选项:</span><br><span class="line"># - overclocking : 开启 CoolBits 并在 NVIDIA 面板中解锁超频选项。</span><br><span class="line"># - triple_buffer : 开启三倍缓冲</span><br><span class="line">options=overclocking</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后直接重启生效</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>确保<code>optimus-manager.service</code>已经运行</p>
+<p>运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ optimus-manager --switch nvidia</span><br></pre></td></tr></table></figure>
+
+<p>切换至nvidia</p>
+<p>运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ optimus-manager --switch intel</span><br></pre></td></tr></table></figure>
+
+<p>切换至intel</p>
+<p>运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ optimus-manager --<span class="built_in">set</span>-startup=intel</span><br></pre></td></tr></table></figure>
+
+<p>设置开机使用intel</p>
+<h2 id="图形前端-optimus-manager-qt"><a href="#图形前端-optimus-manager-qt" class="headerlink" title="图形前端 optimus-manager-qt"></a>图形前端 <code>optimus-manager-qt</code></h2><p><a target="_blank" rel="noopener" href="https://github.com/Shatur95/optimus-manager-qt">optimus-manager-qt</a><br><img src="https://github.com/Askannz/optimus-manager/raw/master/systray.png" alt="optimus-manager-qt"></p>
+<p>gnome-shell 扩展 <a target="_blank" rel="noopener" href="https://github.com/inzar98/optimus-manager-argos">optimus-manager-argos</a><br><img src="https://github.com/inzar98/optimus-manager-argos/raw/master/screenshots/optimus-manager-1.png" alt="optimus-manager-argos"></p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kde`用户可以从`archlinuxcn`源安装`optimus-manager-qt-kde</span><br><span class="line">$ sudo pacman -Sy optimus-manager-qt-kde</span><br></pre></td></tr></table></figure>
+
+<p>非<code>kde</code>用户, 安装<code>optimus-manager-qt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pamcna -Sy optimus-manager-qt</span><br></pre></td></tr></table></figure>
+
+<p>转载自<a target="_blank" rel="noopener" href="https://blog.edward-p.xyz/optimus-manager/">https://blog.edward-p.xyz/optimus-manager/</a></p>
 
 
                 <hr>
@@ -247,12 +260,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/03-29-git服务器添加公钥后仍需要密码/" data-toggle="tooltip" data-placement="top" title="git服务器添加公钥后仍需要密码">&larr; Previous Post</a>
+                            <a href="/2020/04-28-fcitx与vim的使用优化/" data-toggle="tooltip" data-placement="top" title="fcitx与vim的使用优化">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/03-26-linxu下opencv环境搭建/" data-toggle="tooltip" data-placement="top" title="linxu下opencv环境搭建">Next Post &rarr;</a>
+                            <a href="/2020/04-27-Arch系linux静态ip设置与固定/" data-toggle="tooltip" data-placement="top" title="Arch系linux静态ip设置与固定">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -287,9 +300,11 @@
                        
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#terminal" title="terminal">terminal</a>
+                          <a class="tag" href="/tags/#Arch" title="Arch">Arch</a>
                         
-                          <a class="tag" href="/tags/#proxy" title="proxy">proxy</a>
+                          <a class="tag" href="/tags/#optimius-manager" title="optimius-manager">optimius-manager</a>
+                        
+                          <a class="tag" href="/tags/#显卡" title="显卡">显卡</a>
                         
                     </div>
                 </section>
@@ -329,8 +344,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://snitxmhm.github.io/2020/03-29-%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/";
-    var disqus_url = "https://snitxmhm.github.io/2020/03-29-%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/";
+    var disqus_identifier = "https://snitxmhm.github.io/2020/04-27-Linux%E4%B8%8B%E6%9C%80%E4%BD%B3%E6%98%BE%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/";
+    var disqus_url = "https://snitxmhm.github.io/2020/04-27-Linux%E4%B8%8B%E6%9C%80%E4%BD%B3%E6%98%BE%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
